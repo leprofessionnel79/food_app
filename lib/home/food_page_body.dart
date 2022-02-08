@@ -67,13 +67,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           height: 30,
         ),
         Container(
-          margin: EdgeInsets.only(left: 30),
+          margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               BigText(text: "Popular"),
               SizedBox(
-                width: 10,
+                width: Dimensions.width10,
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 3),
@@ -83,7 +83,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 ),
               ),
               SizedBox(
-                width: 10,
+                width: Dimensions.width10,
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 2),
@@ -95,7 +95,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: Dimensions.height10,
         ),
          ListView.builder(
               physics: NeverScrollableScrollPhysics(),
@@ -103,14 +103,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                  margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height10),
                   child: Row(
                     children: [
                       Container(
-                        height: 120,
-                        width: 120,
+                        height: Dimensions.height120,
+                        width: Dimensions.width120,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(Dimensions.radius20),
                             color: Colors.white38,
                             image: DecorationImage(
                                 fit: BoxFit.cover,
@@ -118,15 +118,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       ),
                       Expanded(
                         child: Container(
-                          height: 100,
+                          height: Dimensions.height100,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                bottomRight: Radius.circular(20),
+                                topRight: Radius.circular(Dimensions.radius20),
+                                bottomRight: Radius.circular(Dimensions.radius20),
                               ),
                               color: Colors.white),
                           child: Padding(
-                            padding: EdgeInsets.only(left: 10, right: 10),
+                            padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -134,11 +134,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 BigText(
                                     text: "delecious beriany meal from chaina"),
                                 SizedBox(
-                                  height: 10,
+                                  height: Dimensions.height10,
                                 ),
                                 SmallText(text: "delecious chainess meal"),
                                 SizedBox(
-                                  height: 10,
+                                  height: Dimensions.height10,
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -204,7 +204,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         children: [
           Container(
             height: Dimensions.pageViewContaner,
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius30),
                 color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
@@ -216,7 +216,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: Dimensions.pageViewTextContaner,
-              margin: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+              margin: EdgeInsets.only(left: Dimensions.width30, right:Dimensions.width30, bottom: Dimensions.height20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius30),
                   color: Colors.white,
@@ -229,13 +229,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     BoxShadow(color: Colors.white, offset: Offset(-5, 0))
                   ]),
               child: Container(
-                padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+                padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.width15, right: Dimensions.width15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(text: "Chineees Side"),
                     SizedBox(
-                      height: 10,
+                      height: Dimensions.height10,
                     ),
                     Row(
                       children: [
@@ -249,21 +249,21 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   )),
                         ),
                         SizedBox(
-                          width: 10,
+                          width: Dimensions.width10,
                         ),
                         SmallText(text: "4.5"),
                         SizedBox(
-                          width: 10,
+                          width: Dimensions.width10,
                         ),
                         SmallText(text: "1327"),
                         SizedBox(
-                          width: 10,
+                          width: Dimensions.width10,
                         ),
                         SmallText(text: "comments"),
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: Dimensions.height20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
