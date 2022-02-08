@@ -100,10 +100,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         Container(
           height: 500,
           child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.only(left: 20, right: 20),
+                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
                   child: Row(
                     children: [
                       Container(
@@ -113,7 +114,55 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white38,
                             image: DecorationImage(
+                                fit: BoxFit.cover,
                                 image: AssetImage("assets/image/food0.png"))),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomRight: Radius.circular(20),
+                              ),
+                              color: Colors.white),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                BigText(
+                                    text: "delecious beriany meal from chaina"),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                SmallText(text: "delecious chainess meal"),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconTextWidget(
+                                        iconData: Icons.circle_sharp,
+                                        text: "normal",
+                                        iconColor: AppColors.iconColor1),
+                                    IconTextWidget(
+                                        iconData: Icons.location_on,
+                                        text: "1.7 km",
+                                        iconColor: AppColors.mainColor),
+                                    IconTextWidget(
+                                        iconData: Icons.access_time_rounded,
+                                        text: "32min",
+                                        iconColor: AppColors.iconColor2)
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       )
                     ],
                   ),
