@@ -1,5 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/utils/colors.dart';
+import 'package:food_app/utils/dimenstions.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/icon_text_widget.dart';
 import 'package:food_app/widgets/small_text.dart';
@@ -15,7 +19,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currentPageValue = 0.0;
   double _scaleFactor = 0.8;
-  double _height = 220;
+  double _height = Dimensions.pageViewContaner;
 
   @override
   void initState() {
@@ -36,15 +40,30 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.redAccent,
-      height: 320,
-      child: PageView.builder(
-          controller: pageController,
-          itemCount: 5,
-          itemBuilder: (context, position) {
-            return _buildPageItem(position);
-          }),
+    return Column(
+      children: [
+        Container(
+          //color: Colors.redAccent,
+          height: Dimensions.pageView,
+          child: PageView.builder(
+              controller: pageController,
+              itemCount: 5,
+              itemBuilder: (context, position) {
+                return _buildPageItem(position);
+              }),
+        ),
+        new DotsIndicator(
+          dotsCount: 5,
+          position: _currentPageValue,
+          decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)),
+          ),
+        )
+      ],
     );
   }
 
@@ -72,17 +91,17 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     } else {
       var currScale = 0.8;
       matrix = Matrix4.diagonal3Values(1, currScale, 1)
-        ..setTranslationRaw(0, _height * (1 - _scaleFactor) / 2, 1);
+        ..setTranslationRaw(0, _height * (1 - _scaleFactor) / 2, 0);
     }
     return Transform(
       transform: matrix,
       child: Stack(
         children: [
           Container(
-            height: 220,
+            height: Dimensions.pageViewContaner,
             margin: EdgeInsets.only(left: 10, right: 10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
                 color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
                 image: DecorationImage(
                     fit: BoxFit.cover,
@@ -91,12 +110,19 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 120,
+              height: Dimensions.pageViewTextContaner,
               margin: EdgeInsets.only(left: 30, right: 30, bottom: 20),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.white,
-              ),
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color(0xFFe8e8e8),
+                        blurRadius: 5.0,
+                        offset: Offset(0, 5)),
+                    BoxShadow(color: Colors.white, offset: Offset(5, 0)),
+                    BoxShadow(color: Colors.white, offset: Offset(-5, 0))
+                  ]),
               child: Container(
                 padding: EdgeInsets.only(top: 15, left: 15, right: 15),
                 child: Column(
@@ -135,21 +161,16 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       height: 20,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconTextWidget(
                             iconData: Icons.circle_sharp,
                             text: "normal",
                             iconColor: AppColors.iconColor1),
-                        SizedBox(
-                          width: 7,
-                        ),
                         IconTextWidget(
                             iconData: Icons.location_on,
                             text: "1.7 km",
                             iconColor: AppColors.mainColor),
-                        SizedBox(
-                          width: 7,
-                        ),
                         IconTextWidget(
                             iconData: Icons.access_time_rounded,
                             text: "32min",
