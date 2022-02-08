@@ -62,6 +62,63 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             activeShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
           ),
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 3),
+                child: BigText(
+                  text: ".",
+                  color: Colors.black26,
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 2),
+                child: SmallText(
+                  text: "food pairing",
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          height: 500,
+          child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white38,
+                            image: DecorationImage(
+                                image: AssetImage("assets/image/food0.png"))),
+                      )
+                    ],
+                  ),
+                );
+              }),
         )
       ],
     );
