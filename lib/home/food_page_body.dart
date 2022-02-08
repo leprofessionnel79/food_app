@@ -97,10 +97,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         SizedBox(
           height: 20,
         ),
-        Container(
-          height: 500,
-          child: ListView.builder(
+         ListView.builder(
               physics: NeverScrollableScrollPhysics(),
+              shrinkWrap:true,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Container(
@@ -168,7 +167,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   ),
                 );
               }),
-        )
+        
       ],
     );
   }
