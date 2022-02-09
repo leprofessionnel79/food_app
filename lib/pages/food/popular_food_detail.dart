@@ -4,6 +4,7 @@ import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_column.dart';
 import 'package:food_app/widgets/app_icons.dart';
 import 'package:food_app/widgets/big_text.dart';
+import 'package:food_app/widgets/expandable_text_widget.dart';
 import 'package:food_app/widgets/icon_text_widget.dart';
 import 'package:food_app/widgets/small_text.dart';
 
@@ -66,27 +67,8 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height10 / 2,
                       ),
-                      SmallText(
-                        text:
-                            "Biryani is a mixed rice dish originating among the Muslims of the Indian subcontinent. It is made by adding rice and spices to meat. Eggs and/or vegetables, such as potatoes, are also added in certain regional varieties",
-                        size: 13,
-                        height: 1.3,
-                      ),
-                      SizedBox(
-                        height: Dimensions.height10,
-                      ),
-                      Row(
-                        children: [
-                          SmallText(
-                            text: "show more",
-                            color: AppColors.mainColor,
-                          ),
-                          Icon(
-                            Icons.arrow_drop_down_rounded,
-                            color: AppColors.mainColor,
-                          )
-                        ],
-                      )
+                      
+                      Expanded(child: SingleChildScrollView(child: ExpandableText(text: "Ahlates tr meat to diffAccording to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, According to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, with the distinction between pulao and biryani being arbitrarywith the distinction between pulao and biryani being arbitrary ")))
                     ],
                   ),
                 ))

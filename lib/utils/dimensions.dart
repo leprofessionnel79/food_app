@@ -8,9 +8,11 @@ class Dimensions {
   static double pageView = screenHeight / 2.13571429;
   static double pageViewContaner = screenHeight / 3.1064935;
   static double pageViewTextContaner = screenHeight / 5.6952381;
-
+  
+  
   // fonts
   static double font20 = screenHeight / 34.1714286;
+  static double font17 = screenHeight / 40.2016807;
   static double font26 = screenHeight / 26.2857143;
   // radius
   static double radius30 = screenHeight / 22.7809524;
