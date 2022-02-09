@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/home/main_food_page.dart';
+import 'package:food_app/pages/food/popular_food_detail.dart';
+import 'package:food_app/pages/home/main_food_page.dart';
+import 'package:food_app/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -13,12 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MainFoodPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: PopularFoodDetail() //MainFoodPage(),
+        );
   }
 }

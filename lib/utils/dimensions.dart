@@ -9,11 +9,13 @@ class Dimensions {
   static double pageViewContaner = screenHeight / 3.1064935;
   static double pageViewTextContaner = screenHeight / 5.6952381;
 
+  // fonts
   static double font20 = screenHeight / 34.1714286;
+  static double font26 = screenHeight / 26.2857143;
+  // radius
   static double radius30 = screenHeight / 22.7809524;
   static double radius20 = screenHeight / 34.1714286;
   static double radius15 = screenHeight / 45.5619048;
-
 
   //width
   static double width10 = screenWidth / 41.1428571;
@@ -32,7 +34,9 @@ class Dimensions {
   static double height45 = screenHeight / 15.1873016;
   static double height100 = screenHeight / 6.83428571;
   static double height120 = screenHeight / 5.6952381;
+  static double height350 = screenHeight / 1.95265306;
+  static double height320 = screenHeight / 2.13571429;
+// icon size
 
-
-
+  static double iconsize16 = screenHeight / 42.7142857;
 }
