@@ -17,7 +17,7 @@ class _ExpandableTextState extends State<ExpandableText> {
 
   bool hiddentext = true;
 
-  double textHeight = Dimensions.screenHeight / 5.63;
+  double textHeight = Dimensions.screenHeight / 3.7;
 
   @override
   void initState() {
@@ -36,17 +36,22 @@ class _ExpandableTextState extends State<ExpandableText> {
   Widget build(BuildContext context) {
     return Container(
       child: secondhalftext.isEmpty
-          ? SmallText(text: firsthalftext,size: Dimensions.font17,color: AppColors.paraColor,height: 1.5,)
+          ? SmallText(
+              text: firsthalftext,
+              size: Dimensions.font17,
+              color: AppColors.paraColor,
+              height: 1.5,
+            )
           : Column(
               children: [
                 SmallText(
-                    text: hiddentext
-                        ? (firsthalftext + "...")
-                        : (firsthalftext + secondhalftext),
-                        size: Dimensions.font17,
-                        color: AppColors.paraColor,
-                        height: 1.5,
-                        ),
+                  text: hiddentext
+                      ? (firsthalftext + "...")
+                      : (firsthalftext + secondhalftext),
+                  size: Dimensions.font17,
+                  color: AppColors.paraColor,
+                  height: 1.5,
+                ),
                 InkWell(
                   onTap: () {
                     setState(() {
@@ -56,12 +61,14 @@ class _ExpandableTextState extends State<ExpandableText> {
                   child: Row(
                     children: [
                       SmallText(
-                        text: hiddentext?"Show more":"Show less",
+                        text: hiddentext ? "Show more" : "Show less",
                         color: AppColors.mainColor,
                         size: Dimensions.font17,
                       ),
-                      Icon(hiddentext?
-                        Icons.arrow_drop_down:Icons.arrow_drop_up,
+                      Icon(
+                        hiddentext
+                            ? Icons.arrow_drop_down
+                            : Icons.arrow_drop_up,
                         color: AppColors.mainColor,
                       )
                     ],
