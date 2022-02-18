@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/controllers/recommended_product_controller.dart';
 import 'package:food_app/routes/route_helper.dart';
+import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_icons.dart';
@@ -8,10 +10,12 @@ import 'package:food_app/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 
 class RecommendedFood extends StatelessWidget {
-  const RecommendedFood({Key? key}) : super(key: key);
+  final int pageId;
+  const RecommendedFood({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<RecommendedProductController>().recommendedProductsList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -46,14 +50,14 @@ class RecommendedFood extends StatelessWidget {
                         )),
                     child: Center(
                         child: BigText(
-                      text: "Chiness Side",
+                      text: product.name!,
                       size: Dimensions.font26,
                     ))),
                 preferredSize: Size.fromHeight(Dimensions.height20)),
             expandedHeight: Dimensions.height320,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/food0.png",
+              background: Image.network(
+                AppConstants.BASE_URL+AppConstants.UPLOADS+product.img!,
                 fit: BoxFit.cover,
                 width: double.maxFinite,
               ),
@@ -65,7 +69,7 @@ class RecommendedFood extends StatelessWidget {
               Container(
                 child: ExpandableText(
                     text:
-                        "Ahlates tr meat to diffAccording to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, According to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, with the distinction between pulao and biryani being arbitrarywith the distinction between pulao and biryani being arbitraryAhlates tr meat to diffAccording to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, According to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, with the distinction between pulao and biryani being arbitrarywith the distinction between pulao and biryani being arbitraryAhlates tr meat to diffAccording to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, According to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, with the distinction between pulao and biryani being arbitrarywith the distinction between pulao and biryani being arbitraryAhlates tr meat to diffAccording to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, According to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, with the distinction between pulao and biryani being arbitrarywith the distinction between pulao and biryani being arbitrary"),
+                        product.description),
                 margin: EdgeInsets.only(
                     left: Dimensions.width20, right: Dimensions.width20),
               )
@@ -92,7 +96,7 @@ class RecommendedFood extends StatelessWidget {
                   iconcolor: Colors.white,
                 ),
                 BigText(
-                  text: "\$10.88 " + " X" + " O",
+                  text: "\$ ${product.price!} " + " X" + " O",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
@@ -144,7 +148,7 @@ class RecommendedFood extends StatelessWidget {
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
                       color: AppColors.mainColor),
                   child: BigText(
-                    text: "\$10 | ADD TO CART",
+                    text: "\$ ${product.price!} | ADD TO CART",
                     color: Colors.white,
                   ),
                 )
