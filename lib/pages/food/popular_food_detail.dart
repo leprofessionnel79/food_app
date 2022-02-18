@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/controllers/popular_product_controller.dart';
+import 'package:food_app/pages/home/main_food_page.dart';
+import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_column.dart';
@@ -7,12 +10,19 @@ import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text_widget.dart';
 import 'package:food_app/widgets/icon_text_widget.dart';
 import 'package:food_app/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+
+  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductsList[pageId];
+    // print("product id is " + pageId.toString());
+    // print("product name is " + product.name.toString());
     return Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
@@ -26,7 +36,7 @@ class PopularFoodDetail extends StatelessWidget {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage("assets/image/food0.png"))),
+                          image: NetworkImage(AppConstants.BASE_URL+AppConstants.UPLOADS+product.img!))),
                 )),
             Positioned(
                 left: Dimensions.width20,
@@ -35,7 +45,11 @@ class PopularFoodDetail extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AppIcon(icon: Icons.arrow_back_ios),
+                    GestureDetector(
+                        onTap: () {
+                          Get.to(() => MainFoodPage());
+                        },
+                        child: AppIcon(icon: Icons.arrow_back_ios)),
                     AppIcon(icon: Icons.shopping_cart_outlined)
                   ],
                 )),
@@ -58,7 +72,7 @@ class PopularFoodDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppColumn(
-                        text: "Chinees side",
+                        text: product.name!,
                       ),
                       SizedBox(
                         height: Dimensions.height10 / 2,
@@ -67,8 +81,11 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height10 / 2,
                       ),
-                      
-                      Expanded(child: SingleChildScrollView(child: ExpandableText(text: "Ahlates tr meat to diffAccording to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, According to Pratibha Karan, who wrote the book Biryani, biryani is of South Indian origin, derived from pilaf varieties brought to the Indian subcontinent by Arab traders. She speculates that the pulao was an army dish in medieval India. Armies would prepare a one-pot dish of rice with whichever meat was available. Over time, the dish became biryani due to different methods of cooking, with the distinction between pulao and biryani being arbitrarywith the distinction between pulao and biryani being arbitrary ")))
+                      Expanded(
+                          child: SingleChildScrollView(
+                              child: ExpandableText(
+                                  text:
+                                      product.description!)))
                     ],
                   ),
                 ))
@@ -129,13 +146,12 @@ class PopularFoodDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor),
                 child: BigText(
-                  text: "\$10 | ADD TO CART",
+                  text: "\$ ${product.price!}| ADD TO CART",
                   color: Colors.white,
                 ),
               )
             ],
           ),
-        )
-        );
+        ));
   }
 }
