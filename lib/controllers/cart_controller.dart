@@ -25,7 +25,8 @@ class CartController extends GetxController {
             img: value.img,
             quantity: value.quantity! + quantity,
             isExist: true,
-            time: DateTime.now().toString());
+            time: DateTime.now().toString(),
+            product: product);
       });
       if (totalQuantity <= 0) {
         _items.remove(product.id);
@@ -45,13 +46,16 @@ class CartController extends GetxController {
               img: product.img,
               quantity: quantity,
               isExist: true,
-              time: DateTime.now().toString());
+              time: DateTime.now().toString(),
+              product: product);
         });
       } else {
         Get.snackbar("Item Count", "You should at least add 1 item to cart !!",
             backgroundColor: AppColors.mainColor, colorText: Colors.black);
       }
     }
+
+    update();
   }
 
   bool existIncart(ProductModel product) {
@@ -83,8 +87,17 @@ class CartController extends GetxController {
   }
 
   List<CartModel> get getItems {
-   return  _items.entries.map((e) {
+    return _items.entries.map((e) {
       return e.value;
     }).toList();
+  }
+
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+      
+    });
+    return total;
   }
 }
