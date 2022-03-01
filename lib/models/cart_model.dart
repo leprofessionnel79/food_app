@@ -30,4 +30,17 @@ class CartModel {
     isExist = json['isExist'];
     product = ProductModel.fromJson(json['product']);
   }
+
+  Map<String,dynamic> toJson() {
+    return {
+      "id":this.id,
+      "name":this.name,
+      "price":this.price,
+      "img":this.img,
+      "quantity":this.quantity,
+      "time":this.time,
+      "isExist":this.isExist,
+       "product":this.product!.toJson(),
+    };
+  }
 }

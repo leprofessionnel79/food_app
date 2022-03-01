@@ -26,6 +26,7 @@ class Dimensions {
   static double width30 = screenWidth / 13.7142857;
   static double width45 = screenWidth / 9.14285714;
   static double width120 = screenWidth / 3.42857143;
+  static double width250 = screenWidth /1.64571429;
 
   //height
 
@@ -36,6 +37,7 @@ class Dimensions {
   static double height45 = screenHeight / 15.1873016;
   static double height100 = screenHeight / 6.83428571;
   static double height120 = screenHeight / 5.6952381;
+  static double height250 = screenHeight / 2.73371429;
   static double height350 = screenHeight / 1.95265306;
   static double height320 = screenHeight / 2.13571429;
 // icon size

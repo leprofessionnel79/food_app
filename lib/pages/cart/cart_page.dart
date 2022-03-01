@@ -68,6 +68,7 @@ class CartPage extends StatelessWidget {
                     child:
                         GetBuilder<CartController>(builder: (cartController) {
                       var _cartList = cartController.getItems;
+
                       return ListView.builder(
                           itemCount: _cartList.length,
                           itemBuilder: (_, index) {
@@ -79,12 +80,13 @@ class CartPage extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
+                                      print("tapped");
                                       var PopularIndex =
                                           Get.find<PopularProductController>()
                                               .popularProductsList
                                               .indexOf(
                                                   _cartList[index].product);
-
+                                     
                                       if (PopularIndex >= 0) {
                                         Get.toNamed(RouteHelper.getPopularFood(
                                             PopularIndex, "cartPage"));
@@ -257,7 +259,7 @@ class CartPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // popularProduct.addItem(product);
+                    cartController.addToHistory();
                   },
                   child: Container(
                     padding: EdgeInsets.only(
