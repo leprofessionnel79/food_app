@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app/controllers/cart_controller.dart';
 import 'package:food_app/controllers/popular_product_controller.dart';
 import 'package:food_app/pages/cart/cart_page.dart';
+import 'package:food_app/pages/home/home_page.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/app_constants.dart';
@@ -56,8 +57,8 @@ class PopularFoodDetail extends StatelessWidget {
                         onTap: () {
                           if (page == "cartPage") {
                             Get.toNamed(RouteHelper.getCartPage());
-                          }else{
-                            Get.to(() => MainFoodPage());
+                          } else {
+                            Get.to(() => HomePage());
                           }
                         },
                         child: AppIcon(icon: Icons.arrow_back_ios)),
@@ -219,8 +220,6 @@ class PopularFoodDetail extends StatelessWidget {
               ],
             ),
           );
-        }
-        )
-        );
+        }));
   }
 }

@@ -36,10 +36,10 @@ class CartController extends GetxController {
       if (quantity > 0) {
         print("lenth of items is " + _items.length.toString());
         _items.putIfAbsent(product.id!, () {
-          print(" adding item to cart id is  " +
-              product.id.toString() +
-              "  quantitiy is " +
-              quantity.toString());
+          // print(" adding item to cart id is  " +
+          //     product.id.toString() +
+          //     "  quantitiy is " +
+          //     quantity.toString());
           return CartModel(
               id: product.id,
               name: product.name,
