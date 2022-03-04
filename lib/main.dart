@@ -7,7 +7,6 @@ import 'package:food_app/pages/food/popular_food_detail.dart';
 import 'package:food_app/pages/food/recommended_food_details.dart';
 import 'package:food_app/pages/home/food_page_body.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
-import 'package:food_app/pages/home/main_food_page.dart';
 import 'package:food_app/pages/splash/splash_page.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:get/get.dart';

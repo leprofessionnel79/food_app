@@ -82,7 +82,7 @@ class CartRepo {
         AppConstants.CART_LIST_HISTORY, cartHistory);
     print("lenth of history list is " + getCartHistoryList().length.toString());
     for (int x = 0; x < getCartHistoryList().length; x++) {
-      print("time of orders is "+getCartHistoryList()[x].time.toString());
+      print("time of orders is " + getCartHistoryList()[x].time.toString());
     }
   }
 

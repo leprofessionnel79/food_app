@@ -65,7 +65,7 @@ class PopularFoodDetail extends StatelessWidget {
                     GetBuilder<PopularProductController>(builder: (controller) {
                       return GestureDetector(
                         onTap: () {
-                          if (controller.totalItem >= 1) {
+                          if (controller.totalItem >= 0) {
                             Get.toNamed(RouteHelper.getCartPage());
                           }
                         },
@@ -205,8 +205,8 @@ class PopularFoodDetail extends StatelessWidget {
                     padding: EdgeInsets.only(
                         top: Dimensions.height15,
                         bottom: Dimensions.height15,
-                        left: Dimensions.width15,
-                        right: Dimensions.width15),
+                        left: Dimensions.width15 / 3,
+                        right: Dimensions.width15 / 3),
                     decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Dimensions.radius20),
@@ -216,7 +216,7 @@ class PopularFoodDetail extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                )
+                ),
               ],
             ),
           );

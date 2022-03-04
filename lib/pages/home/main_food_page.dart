@@ -49,7 +49,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                   ),
                   Center(
                     child: Container(
-                      width: Dimensions.width45,
+                      width: Dimensions.width45 * 1.3,
                       height: Dimensions.height45,
                       child: Icon(
                         Icons.search,
