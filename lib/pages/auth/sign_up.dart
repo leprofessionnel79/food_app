@@ -1,5 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/base/show_custom_snackbar.dart';
+import 'package:food_app/controllers/auth_controller.dart';
+import 'package:food_app/models/signup_body_model.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_text_field.dart';
@@ -16,6 +19,41 @@ class SignUpPage extends StatelessWidget {
     var nameController = TextEditingController();
     var phoneController = TextEditingController();
     var signUpImages = ["t.png", "f.png", "g.png"];
+
+    void _registration() {
+      var authController = Get.find<AuthController>();
+      String name = nameController.text.trim();
+      String email = emailController.text.trim();
+      String phone = phoneController.text.trim();
+      String password = passwordController.text.trim();
+
+      if (name.isEmpty) {
+        showCustomSnackBar("Type in your name", title: "Name");
+      } else if (phone.isEmpty) {
+        showCustomSnackBar("Type in your phone number", title: "Phone number");
+      } else if (email.isEmpty) {
+        showCustomSnackBar("Type in your email", title: "Email");
+      } else if (!GetUtils.isEmail(email)) {
+        showCustomSnackBar("use valid email please", title: "Valid Email");
+      } else if (password.isEmpty) {
+        showCustomSnackBar("Type in your password", title: "Password");
+      } else if (password.length < 6) {
+        showCustomSnackBar("password couldn\'t less than 6 digits",
+            title: "Password");
+      } else {
+        SignUpBody signUpBody = SignUpBody(
+            email: email, name: name, password: password, phone: phone);
+
+        authController.registration(signUpBody).then((status) {
+          if (status.isSuccess) {
+            print("Success registrition");
+          } else {
+            showCustomSnackBar(status.message);
+          }
+        });
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -68,17 +106,22 @@ class SignUpPage extends StatelessWidget {
               height: Dimensions.height20,
             ),
 
-            Container(
-              width: Dimensions.screenWidth / 2.4,
-              height: Dimensions.screenHeight / 13,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius30),
-                  color: AppColors.mainColor),
-              child: Center(
-                child: BigText(
-                  text: "Sign Up",
-                  size: Dimensions.font20 + Dimensions.font20 / 2,
-                  color: Colors.white,
+            GestureDetector(
+              onTap: () {
+                _registration();
+              },
+              child: Container(
+                width: Dimensions.screenWidth / 2.4,
+                height: Dimensions.screenHeight / 13,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius30),
+                    color: AppColors.mainColor),
+                child: Center(
+                  child: BigText(
+                    text: "Sign Up",
+                    size: Dimensions.font20 + Dimensions.font20 / 2,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

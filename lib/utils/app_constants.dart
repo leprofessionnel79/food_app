@@ -12,6 +12,8 @@ class AppConstants {
 
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
+  // auth end points
+  static const String REGISTRATION_URI = "/api/v1/auth/register";
 
   static const String TOKEN = "DBtoken";
   static const String UPLOADS = "/uploads/";
