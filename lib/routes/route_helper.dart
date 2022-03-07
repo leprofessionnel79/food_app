@@ -1,3 +1,4 @@
+import 'package:food_app/pages/auth/sign_in_page.dart';
 import 'package:food_app/pages/cart/cart_page.dart';
 import 'package:food_app/pages/food/popular_food_detail.dart';
 import 'package:food_app/pages/food/recommended_food_details.dart';
@@ -12,6 +13,9 @@ class RouteHelper {
 
   static const String splashPage = "/splash-page";
   static String getSplashPage() => '$splashPage';
+
+  static const String signInPage = "/signin-page";
+  static String getSignInPage() => '$signInPage';
 
   static const String popularFood = "/popular-food";
   static String getPopularFood(int pageId, String page) =>
@@ -49,6 +53,12 @@ class RouteHelper {
         name: cartPage,
         page: () {
           return CartPage();
+        }),
+    GetPage(
+        transition: Transition.fadeIn,
+        name: signInPage,
+        page: () {
+          return SignInPage();
         })
   ];
 }

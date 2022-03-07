@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: SignInPage(),
-         // initialRoute: RouteHelper.getSplashPage(),
-         // getPages: RouteHelper.routes, //MainFoodPage(),
+         // home: SignInPage(),
+          initialRoute: RouteHelper.getSplashPage(),
+          getPages: RouteHelper.routes, //MainFoodPage(),
         );
       });
     });
