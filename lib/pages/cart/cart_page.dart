@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app/base/no_data_page.dart';
 import 'package:food_app/controllers/auth_controller.dart';
 import 'package:food_app/controllers/cart_controller.dart';
+import 'package:food_app/controllers/location_controller.dart';
 import 'package:food_app/controllers/popular_product_controller.dart';
 import 'package:food_app/controllers/recommended_product_controller.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
@@ -13,6 +14,7 @@ import 'package:food_app/widgets/app_icons.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/small_text.dart';
 import 'package:get/get.dart';
+import 'package:food_app/controllers/location_controller.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -293,6 +295,11 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           if (Get.find<AuthController>().userLoggedIn()) {
+                            if (Get.find<LocationConroller>()
+                                .addressList
+                                .isEmpty) {
+                              Get.toNamed(RouteHelper.getAddressPage());
+                            }
                             cartController.addToHistory();
                           } else {
                             Get.toNamed(RouteHelper.getSignInPage());

@@ -12,9 +12,12 @@ import 'package:food_app/pages/home/main_food_page.dart';
 import 'package:food_app/pages/splash/splash_page.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:get/get.dart';
+import 'package:url_strategy/url_strategy.dart';
 import 'helper/dependencies.dart' as dep;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 Future<void> main() async {
+  setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
   runApp(const MyApp());
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-   Get.find<CartController>().getCartData();
+    Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
         return GetMaterialApp(
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-         // home: SignInPage(),
+          // home: SignInPage(),
           initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes, //MainFoodPage(),
         );

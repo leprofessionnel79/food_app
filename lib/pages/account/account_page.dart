@@ -166,50 +166,49 @@ class AccountPage extends StatelessWidget {
                       ],
                     ),
                   )
-                : const CustomLoader())
+                : Center(child: const CustomLoader()))
             : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: double.maxFinite,
-                    height: Dimensions.height20 * 8,
-                    margin: EdgeInsets.only(
-                        left: Dimensions.width20,
-                        right: Dimensions.width20),
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius20),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                                "assets/image/signintocontinue.png"))),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getSignInPage());
-                    },
-                    child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
                       width: double.maxFinite,
-                      height: Dimensions.height20 * 5,
+                      height: Dimensions.height20 * 8,
                       margin: EdgeInsets.only(
-                          left: Dimensions.width20,
-                          right: Dimensions.width20),
+                          left: Dimensions.width20, right: Dimensions.width20),
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius20),
-                          color: AppColors.mainColor),
-                      child: Center(
-                          child: BigText(
-                        text: "Sign In",
-                        color: Colors.white,
-                        size: Dimensions.font26,
-                      )),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                  "assets/image/signintocontinue.png"))),
                     ),
-                  )
-                ],
-              ),
-            );
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getSignInPage());
+                      },
+                      child: Container(
+                        width: double.maxFinite,
+                        height: Dimensions.height20 * 5,
+                        margin: EdgeInsets.only(
+                            left: Dimensions.width20,
+                            right: Dimensions.width20),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius20),
+                            color: AppColors.mainColor),
+                        child: Center(
+                            child: BigText(
+                          text: "Sign In",
+                          color: Colors.white,
+                          size: Dimensions.font26,
+                        )),
+                      ),
+                    )
+                  ],
+                ),
+              );
       }),
     );
   }
