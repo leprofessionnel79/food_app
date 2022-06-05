@@ -82,7 +82,7 @@ class LocationConroller extends GetxController implements GetxService {
     if (response.body["status"] == "OK") {
       _address = response.body["results"][0]["formatted_address"].toString();
 
-      print("printting address info " + _address);
+      print("printting address inf " + _address);
     } else {
       print("error getting google api");
     }
