@@ -52,7 +52,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Address Page"),
+        title: Align(
+            alignment: Alignment.center,
+            child: Text("Address Page")),
         backgroundColor: AppColors.mainColor,
       ),
       body: GetBuilder<LocationConroller>(builder: (locationcontroller) {

@@ -28,6 +28,9 @@ class LocationConroller extends GetxController implements GetxService {
   late Map<String, dynamic> _getAddress;
   Map get getAddress => _getAddress;
 
+  Placemark get placemmark => _placemark;
+  Placemark get pickPlacemark => _pickPlacemark;
+
   late GoogleMapController _mapController;
   bool _updateAddressData = true;
   bool _changeAddress = true;
@@ -67,7 +70,12 @@ class LocationConroller extends GetxController implements GetxService {
         if (_changeAddress) {
           String _address = await getAddressFromGeocode(
               LatLng(position.target.latitude, position.target.longitude));
+
+          fromAddress?_placemark=Placemark(name: _address)
+          :_pickPlacemark=Placemark(name: _address);
+
         }
+
       } catch (e) {
         print(e);
       }
@@ -79,10 +87,10 @@ class LocationConroller extends GetxController implements GetxService {
 
     Response response = await locationRepo.getAddressFromGeocode(latLng);
 
-    if (response.body["status"] == "OK") {
-      _address = response.body["results"][0]["formatted_address"].toString();
+    if (response.body["status"] == 'OK') {
+      _address = response.body["results"][0]['formatted_address'].toString();
 
-      print("printting address inf " + _address);
+      print("printing address inf " + _address);
     } else {
       print("error getting google api");
     }
