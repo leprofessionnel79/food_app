@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/pages/account/account_page.dart';
@@ -20,11 +22,12 @@ class _HomePageState extends State<HomePage> {
   //late PersistentTabController _controller;
 
   List pages = [
-    MainFoodPage(),
-    Container(child: Text("History Page"),),
-    
-    CartHistory(),
-    AccountPage(),
+    const MainFoodPage(),
+    Container(
+      child: const Text("History Page"),
+    ),
+    const CartHistory(),
+    const AccountPage(),
   ];
 
   void onTapNav(int index) {
@@ -54,13 +57,14 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _selectedIndex,
         onTap: onTapNav,
         items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), title: Text("Home")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.archive), title: Text("History")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), title: Text("Cart")),
-          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Me")),
+          const BottomNavigationBarItem(
+              icon: const Icon(Icons.home_outlined), label: "Home"),
+          const BottomNavigationBarItem(
+              icon: const Icon(Icons.archive), label: "Archive"),
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: "Cart"),
+          const BottomNavigationBarItem(
+              icon: const Icon(Icons.person), label: "Person"),
         ],
       ),
     );

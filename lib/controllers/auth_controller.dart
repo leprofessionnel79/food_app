@@ -2,7 +2,7 @@ import 'package:food_app/data/repository/auth_repo.dart';
 import 'package:food_app/models/response_model.dart';
 import 'package:food_app/models/signup_body_model.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/http/utils/body_decoder.dart';
+
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;

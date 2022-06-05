@@ -64,8 +64,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
               margin: const EdgeInsets.only(left: 5, right: 5, top: 5),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius20 / 4),
-                  border: Border.all(
-                      width: 2, color: Theme.of(context).primaryColor)),
+                  border: Border.all(width: 2, color: AppColors.mainColor)),
               child: Stack(
                 children: [
                   GoogleMap(
