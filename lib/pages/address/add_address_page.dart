@@ -106,7 +106,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   ),
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(left: Dimensions.width20,top: Dimensions.height20),
+                  padding:  EdgeInsets.only(left: Dimensions.width20,top: Dimensions.height10),
                   child: SizedBox(height: Dimensions.width20*2,child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
@@ -139,7 +139,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     );
                   })),
                 ),
-                SizedBox(height: Dimensions.height20,),
+                SizedBox(height: Dimensions.height10,),
                 Padding(
                     padding: EdgeInsets.only(left: Dimensions.width20),
                     child: BigText(text: "Delivery Address")),
@@ -162,6 +162,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
           );
         });
       }),
+
     );
   }
 }

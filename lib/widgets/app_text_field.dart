@@ -19,8 +19,9 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
         margin: EdgeInsets.only(
-            left: Dimensions.height20, right: Dimensions.height20),
+            left: Dimensions.width20, right: Dimensions.width20),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(Dimensions.radius15),
             color: Colors.white,
