@@ -11,6 +11,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../widgets/app_icons.dart';
+
 class AddAddressPage extends StatefulWidget {
   const AddAddressPage({Key? key}) : super(key: key);
 
@@ -127,7 +129,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             BoxShadow(
                               color: Colors.grey[200]!,
                               spreadRadius: 1,
-                              blurRadius: 5,
+                              blurRadius: 7,
                             )
                           ]
                         ),
@@ -145,13 +147,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     child: BigText(text: "Delivery Address")),
                 SizedBox(height: Dimensions.height10,),
                 AppTextField(textEditingController: _addressController, hintText: "Your Address", icon: Icons.map),
-                SizedBox(height: Dimensions.height20,),
+                SizedBox(height: Dimensions.height10,),
                 Padding(
                     padding: EdgeInsets.only(left: Dimensions.width20),
                     child: BigText(text: "Contact Name")),
                 SizedBox(height: Dimensions.height10,),
                 AppTextField(textEditingController: _contactPersonName, hintText: "Your Name", icon: Icons.person),
-                SizedBox(height: Dimensions.height20,),
+                SizedBox(height: Dimensions.height10,),
                 Padding(
                     padding: EdgeInsets.only(left: Dimensions.width20),
                     child: BigText(text: "Contact Number")),
@@ -162,7 +164,55 @@ class _AddAddressPageState extends State<AddAddressPage> {
           );
         });
       }),
+        bottomNavigationBar:
+        GetBuilder<LocationConroller>(builder: (locationController) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
 
+              Container(
+                height: Dimensions.height20*5,
+                padding: EdgeInsets.only(
+                    top: Dimensions.height10,
+                    bottom: Dimensions.height10,
+                    left: Dimensions.width15,
+                    right: Dimensions.width15),
+                decoration: BoxDecoration(
+                    color: AppColors.buttonBackgroundColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(Dimensions.height20 * 2),
+                      topRight: Radius.circular(Dimensions.height20 * 2),
+                    )),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    GestureDetector(
+                      onTap: () {
+                        //controller.addItem(product);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            top: Dimensions.height15,
+                            bottom: Dimensions.height15,
+                            left: Dimensions.width20,
+                            right: Dimensions.width20),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                            BorderRadius.circular(Dimensions.radius20),
+                            color: AppColors.mainColor),
+                        child: BigText(
+                          text: "SAVE ADDRESS",
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          );
+        })
     );
   }
 }
