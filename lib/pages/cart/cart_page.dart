@@ -299,6 +299,8 @@ class CartPage extends StatelessWidget {
                                 .addressList
                                 .isEmpty) {
                               Get.toNamed(RouteHelper.getAddressPage());
+                            }else{
+                              Get.offNamed(RouteHelper.getInitial());
                             }
                             cartController.addToHistory();
                           } else {

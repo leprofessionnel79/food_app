@@ -4,6 +4,7 @@ import 'package:food_app/controllers/auth_controller.dart';
 import 'package:food_app/controllers/location_controller.dart';
 import 'package:food_app/controllers/user_controller.dart';
 import 'package:food_app/models/address_model.dart';
+import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_text_field.dart';
@@ -41,6 +42,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
     }
 
     if (Get.find<LocationConroller>().addressList.isNotEmpty) {
+      Get.find<LocationConroller>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
               double.parse(
@@ -201,7 +203,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         );
                         locationController.addAddress(_addressModel).then((response){
                           if(response.isSuccess){
-                            Get.back();
+                            Get.toNamed(RouteHelper.getInitial());
                             Get.snackbar("Address", "Address added successfully");
                           }else{
                             Get.snackbar("Address", "Couldn't  add Address !!");

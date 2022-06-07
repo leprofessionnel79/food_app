@@ -102,6 +102,7 @@ class LocationConroller extends GetxController implements GetxService {
     } else {
       print("error getting google api");
     }
+    update();
     return _address;
   }
 
@@ -163,5 +164,11 @@ class LocationConroller extends GetxController implements GetxService {
   Future<bool> saveUserAddress(AddressModel addressModel)async {
     String userAddress = jsonEncode(addressModel.toJson());
    return await  locationRepo.saveUserAddress(userAddress);
+  }
+
+  void clearAddressList(){
+    _addressList=[];
+    _allAddressList=[];
+    update();
   }
 }
