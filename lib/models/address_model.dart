@@ -41,4 +41,15 @@ class AddressModel {
     _latitude = json["latitude"];
     _longitude = json["longitude"];
   }
+  Map<String,dynamic> toJson(){
+    Map<String,dynamic> data = Map<String,dynamic>();
+    data["id"]= this._id;
+    data["addressType"]=this._addressType;
+    data["contact_person_number"]=this._contactPersonNumber;
+    data["contact_person_name"]=this._contactPersonName;
+    data["address"]=this._address;
+    data["latitude"]=this._latitude;
+    data["longitude"]=this._longitude;
+    return data;
+  }
 }

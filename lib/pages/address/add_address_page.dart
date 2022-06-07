@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app/controllers/auth_controller.dart';
 import 'package:food_app/controllers/location_controller.dart';
 import 'package:food_app/controllers/user_controller.dart';
+import 'package:food_app/models/address_model.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_text_field.dart';
@@ -96,6 +97,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         mapToolbarEnabled: false,
                         compassEnabled: false,
                         indoorViewEnabled: true,
+                        myLocationEnabled: true,
                         onCameraIdle: () {
                           locationcontroller.updatePosition(_cameraPosition, true);
                         },
@@ -189,7 +191,24 @@ class _AddAddressPageState extends State<AddAddressPage> {
 
                     GestureDetector(
                       onTap: () {
-                        //controller.addItem(product);
+                        AddressModel _addressModel = AddressModel(
+                            addressType: locationController.addressTypeList[locationController.addressTypeIndex],
+                            contactPersonName: _contactPersonName.text,
+                            contactPersonNumber: _contactPersonNumber.text,
+                            address: _addressController.text,
+                            latitude: locationController.position.latitude.toString()??"",
+                            longitude: locationController.position.longitude.toString()??""
+                        );
+                        locationController.addAddress(_addressModel).then((response){
+                          if(response.isSuccess){
+                            Get.back();
+                            Get.snackbar("Address", "Address added successfully");
+                          }else{
+                            Get.snackbar("Address", "Couldn't  add Address !!");
+
+                          }
+
+                        });
                       },
                       child: Container(
                         padding: EdgeInsets.only(
