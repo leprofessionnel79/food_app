@@ -1,4 +1,5 @@
 import 'package:food_app/pages/address/add_address_page.dart';
+import 'package:food_app/pages/address/pick_address_map.dart';
 import 'package:food_app/pages/auth/sign_in_page.dart';
 import 'package:food_app/pages/cart/cart_page.dart';
 import 'package:food_app/pages/food/popular_food_detail.dart';
@@ -32,7 +33,13 @@ class RouteHelper {
   static const String addAddress = "/add-address";
   static String getAddressPage() => '$addAddress';
 
+  static const String pickAddressMap = "/pick-address";
+  static String getPickAddressPage() => '$pickAddressMap';
   static List<GetPage> routes = [
+    GetPage(name: pickAddressMap, page: (){
+      PickAddressMap pickAddress = Get.arguments;
+      return pickAddress;
+    }),
     GetPage(name: splashPage, page: () => const SplashScreen()),
     GetPage(name: initial, page: () => const HomePage()),
     GetPage(

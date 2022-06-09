@@ -4,6 +4,7 @@ import 'package:food_app/controllers/auth_controller.dart';
 import 'package:food_app/controllers/location_controller.dart';
 import 'package:food_app/controllers/user_controller.dart';
 import 'package:food_app/models/address_model.dart';
+import 'package:food_app/pages/address/pick_address_map.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
@@ -42,6 +43,12 @@ class _AddAddressPageState extends State<AddAddressPage> {
     }
 
     if (Get.find<LocationConroller>().addressList.isNotEmpty) {
+
+      if(Get.find<LocationConroller>().getUserAddressFromLocalStorage()==""){
+        Get.find<LocationConroller>().saveUserAddress(
+            Get.find<LocationConroller>().addressList.last
+        );
+      }
       Get.find<LocationConroller>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
@@ -93,8 +100,18 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   child: Stack(
                     children: [
                       GoogleMap(
+
                         initialCameraPosition:
                         CameraPosition(target: _initialPosition, zoom: 17),
+                        onTap:(latlng){
+                          Get.toNamed(RouteHelper.getPickAddressPage(),
+                              arguments: PickAddressMap(
+                                fromSignup: false,
+                                fromAddress: true,
+                                googleMapController: locationcontroller.mapController,
+                              )
+                          );
+                        },
                         zoomControlsEnabled: false,
                         mapToolbarEnabled: false,
                         compassEnabled: false,
