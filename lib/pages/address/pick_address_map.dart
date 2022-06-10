@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/base/custom_button.dart';
 import 'package:food_app/controllers/location_controller.dart';
+import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
@@ -95,20 +96,28 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     ),
                   ),
                   Positioned(
-                      bottom: 200,
+                      bottom: 80,
                       left: Dimensions.width20,
                       right: Dimensions.width20,
-                      child: CustomButton(
-                        buttonText: 'Pick Address',
-                        onPressed: locationController.loading?null:(){
-                         if(locationController.pickPosition.longitude!=0&&
-                         locationController.pickPlacemark.name!=null){
-                           if(widget.fromAddress){
-                             if(widget.googleMapController!=null){
-                              print("you clicked me !!");
-                             }
-                           }
-                         }
+                      child: locationController.isLoading?Center(child: CircularProgressIndicator(color: AppColors.mainColor,),):
+                      CustomButton(
+                        buttonText: locationController.inZone?widget.fromAddress?'Pick Address':'Pick Location':'Service is not available in your area',
+                        onPressed: (locationController.buttonDisabled||locationController.loading)?null:(){
+                          if(locationController.pickPosition.latitude!=0&&
+                              locationController.pickPlacemark.name!=null){
+                            if(widget.fromAddress){
+                              if(widget.googleMapController!=null){
+                                print("you clicked me !!");
+                                widget.googleMapController!.moveCamera(CameraUpdate.
+                                newCameraPosition(CameraPosition(target: LatLng(
+                                    double.parse(locationController.pickPosition.latitude.toString()),
+                                    double.parse(locationController.pickPosition.longitude.toString())
+                                ))));
+                                locationController.setAddAddressData();
+                              }
+                              Get.toNamed(RouteHelper.getAddressPage());
+                            }
+                          }
 
                         },
                       )

@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
     required this.buttonText,
      this.transparent=false,
     this.margin, this.height,
-    this.width=280, this.fontsize,
+    this.width, this.fontsize,
      this.radius=5,
     this.icon}) : super(key: key);
 
@@ -28,7 +28,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
    final ButtonStyle _flatButton= TextButton.styleFrom(
      backgroundColor: onPressed==null?Theme.of(context).disabledColor:transparent?Colors.transparent:Theme.of(context).primaryColor,
-      minimumSize:Size(width==null?width!:Dimensions.screenWidth, height!=null?height!:50),
+      minimumSize:Size(width==null?Dimensions.screenWidth:width!, height!=null?height!:50),
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius),

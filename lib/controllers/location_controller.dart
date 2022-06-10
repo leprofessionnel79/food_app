@@ -43,6 +43,15 @@ class LocationConroller extends GetxController implements GetxService {
   bool _updateAddressData = true;
   bool _changeAddress = true;
 
+  bool _isLoading = false;
+  bool get isLoading =>_isLoading;
+
+  bool _inZone = false;
+  bool get inZone =>_inZone;
+
+  bool _buttonDisabled = true;
+  bool get buttonDisabled=>_buttonDisabled;
+
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
   }
@@ -74,7 +83,9 @@ class LocationConroller extends GetxController implements GetxService {
               speed: 1,
               speedAccuracy: 1);
         }
-
+         ResponseModel _responseModel =
+         await getZone(position.target.longitude.toString(), position.target.longitude.toString(), false);
+        _buttonDisabled =!_responseModel.isSuccess;
         if (_changeAddress) {
           String _address = await getAddressFromGeocode(
               LatLng(position.target.latitude, position.target.longitude));
@@ -89,6 +100,8 @@ class LocationConroller extends GetxController implements GetxService {
       }
       _loading=false;
       update();
+    }else{
+      _updateAddressData=true;
     }
   }
 
@@ -176,5 +189,40 @@ class LocationConroller extends GetxController implements GetxService {
 
   String getUserAddressFromLocalStorage(){
     return locationRepo.getUserAddress();
+  }
+
+  void setAddAddressData(){
+    _position=_pickPosition;
+    _placemark=_pickPlacemark;
+    _updateAddressData=false;
+    update();
+  }
+  Future<ResponseModel> getZone(String lat,String lng , bool markerLoad)async{
+    late ResponseModel _responseModel;
+     if(markerLoad){
+       _loading=true;
+
+     }else{
+       _isLoading=true;
+     }
+    update();
+     Response response = await locationRepo.getZone(lat, lng);
+     if(response.statusCode==200){
+       _inZone=true;
+       _responseModel= ResponseModel(response.body["zone_id"].toString(), true);
+     }else{
+       _inZone=false;
+       print("we here");
+       _responseModel= ResponseModel(response.statusText!, false);
+     }
+
+    if(markerLoad){
+      _loading=false;
+
+    }else{
+      _isLoading=false;
+    }
+    update();
+    return _responseModel;
   }
 }

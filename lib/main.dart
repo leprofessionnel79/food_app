@@ -11,6 +11,7 @@ import 'package:food_app/pages/home/food_page_body.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
 import 'package:food_app/pages/splash/splash_page.dart';
 import 'package:food_app/routes/route_helper.dart';
+import 'package:food_app/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/dependencies.dart' as dep;
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: Colors.blue,
+            primaryColor: AppColors.mainColor
           ),
           // home: SignInPage(),
           initialRoute: RouteHelper.getSplashPage(),
