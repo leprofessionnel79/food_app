@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/base/custom_button.dart';
 import 'package:food_app/controllers/location_controller.dart';
+import 'package:food_app/pages/address/widgets/search_location_dialogue.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
@@ -58,8 +59,12 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     onCameraMove: (CameraPosition cameraPosition){
                       _cameraPosition= cameraPosition;
                     },
+
                     onCameraIdle: (){
                       Get.find<LocationConroller>().updatePosition(_cameraPosition, false);
+                    },
+                    onMapCreated: (GoogleMapController mapController){
+                      _mapController=mapController;
                     },
                   ),
                   Center(
@@ -71,27 +76,33 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     top: Dimensions.height45,
                     left: Dimensions.width20,
                     right: Dimensions.width20,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: AppColors.mainColor,
-                        borderRadius: BorderRadius.circular(Dimensions.radius20/2),
+                    child: InkWell(
+                      onTap: ()=>Get.dialog(LocationDialogue(mapController: _mapController,)),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius: BorderRadius.circular(Dimensions.radius20/2),
 
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.location_on , size: 25,color: AppColors.yellowColor,),
-                          Expanded(child: Text(
-                            '${locationController.pickPlacemark.name??""}',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: Dimensions.font17,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ))
-                        ],
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.location_on , size: 25,color: AppColors.yellowColor,),
+                            Expanded(child: Text(
+                              '${locationController.pickPlacemark.name??""}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Dimensions.font17,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            )),
+                            SizedBox(width: Dimensions.width10,),
+                            Icon(Icons.search , size: 25,color: AppColors.yellowColor,),
+
+                          ],
+                        ),
                       ),
                     ),
                   ),

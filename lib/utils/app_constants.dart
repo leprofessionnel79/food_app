@@ -20,6 +20,7 @@ class AppConstants {
 
   static const String GEOCODE_URI = "/api/v1/config/geocode-api";
   static const String ZONE_URI = "/api/v1/config/get-zone-id";
+  static const String SEARCH_LOCATION_URI = "/api/v1/config/place-api-autocomplete";
   // auth and user end points
   static const String REGISTRATION_URI = "/api/v1/auth/register";
   static const String LOGIN_URI = "/api/v1/auth/login";
