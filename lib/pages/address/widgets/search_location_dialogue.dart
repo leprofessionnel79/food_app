@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:food_app/controllers/location_controller.dart';
 import 'package:food_app/utils/dimensions.dart';
@@ -18,7 +19,7 @@ class LocationDialogue extends StatelessWidget {
     TextEditingController _controller=TextEditingController();
     return Container(
       padding: EdgeInsets.all(Dimensions.width10),
-      //alignment: Alignment.topCenter,
+      alignment: Alignment.topCenter,
       child: Material(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Dimensions.radius20/2),
@@ -36,24 +37,40 @@ class LocationDialogue extends StatelessWidget {
                 hintText: "search location",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(Dimensions.radius20/2),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     style: BorderStyle.none,
                     width: 0
                   )
+                ),
+                hintStyle:Theme.of(context).textTheme.headline2?.copyWith(
+                    color: Theme.of(context).disabledColor,
+                    fontSize: Dimensions.font17
                 )
               )
             ),
 
-            onSuggestionSelected: (suggestion){},
-            suggestionsCallback: (String pattern) async {
+            onSuggestionSelected: (Prediction suggestion){
+               Get.find<LocationConroller>().setLocation(suggestion.placeId!, suggestion.description!, mapController);
+               Get.back();
+            },
+            suggestionsCallback: ( pattern) async {
               return await Get.find<LocationConroller>().searchLocation(context, pattern);
             },
             itemBuilder: (context,Prediction suggestion){
-              return Row(
-                children: [
-                  Icon(Icons.location_on),
-                  Expanded(child:Text("New Location") )
-                ],
+              return Padding(
+                padding:  EdgeInsets.all(Dimensions.width10),
+                child: Row(
+                  children: [
+                    const Icon(Icons.location_on),
+                    Expanded(child:Text(suggestion.description!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline2?.copyWith(
+                      color: Theme.of(context).textTheme.bodyText1?.color,
+                      fontSize: Dimensions.font17
+                    ),) )
+                  ],
+                ),
               );
             },
           ),

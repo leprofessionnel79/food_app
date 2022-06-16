@@ -8,10 +8,10 @@ class ApiClient extends GetConnect implements GetxService {
   late Map<String, String> _mainHeaders;
   late SharedPreferences sharedPreferences;
 
-  ApiClient({required this.appBaseUrl,required this.sharedPreferences}) {
+  ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     baseUrl = appBaseUrl;
     timeout = Duration(seconds: 30);
-    token =sharedPreferences.getString( AppConstants.TOKEN)??"";
+    token = sharedPreferences.getString(AppConstants.TOKEN) ?? "";
     _mainHeaders = {
       'Content-type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token',
@@ -31,6 +31,7 @@ class ApiClient extends GetConnect implements GetxService {
   }) async {
     try {
       Response response = await get(uri, headers: headers ?? _mainHeaders);
+      print(response.body.toString());
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());

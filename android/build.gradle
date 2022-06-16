@@ -1,7 +1,4 @@
-//android {
-//    compileSdkVersion  32
-//
-//}
+
 
 buildscript {
     ext.kotlin_version = '1.6.10'

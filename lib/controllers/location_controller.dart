@@ -243,4 +243,35 @@ class LocationConroller extends GetxController implements GetxService {
     }
     return _predictionList;
   }
+
+  setLocation(String placeID , String address,GoogleMapController mapController)async{
+    _loading= true ;
+    update();
+
+    PlacesDetailsResponse detail;
+    Response response = await locationRepo.setLocation(placeID);
+
+    detail = PlacesDetailsResponse.fromJson(response.body);
+    _pickPosition=Position(
+        longitude: detail.result.geometry!.location.lng,
+        latitude: detail.result.geometry!.location.lat,
+        timestamp: DateTime.now(),
+        accuracy: 1,
+        altitude: 1,
+        heading: 1,
+        speed: 1,
+        speedAccuracy: 1);
+    _pickPlacemark=Placemark(name: address);
+    _changeAddress=false;
+    if(!mapController.isNull){
+      mapController.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(
+          detail.result.geometry!.location.lat,
+            detail.result.geometry!.location.lng
+        ),zoom: 17)
+      ));
+    }
+    _loading=false;
+    update();
+  }
 }
