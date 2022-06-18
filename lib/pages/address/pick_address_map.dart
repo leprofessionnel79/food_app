@@ -31,20 +31,20 @@ class _PickAddressMapState extends State<PickAddressMap> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(Get.find<LocationConroller>().addressList.isEmpty){
+    if(Get.find<LocationController>().addressList.isEmpty){
       _initialPosition=LatLng(45.521563, -122.677433);
       _cameraPosition=CameraPosition(target: _initialPosition,zoom: 17);
     }else{
-      if(Get.find<LocationConroller>().addressList.isNotEmpty){
-        _initialPosition=LatLng(double.parse(Get.find<LocationConroller>().getAddress["latitude"]),
-            double.parse(Get.find<LocationConroller>().getAddress["longitude"]));
+      if(Get.find<LocationController>().addressList.isNotEmpty){
+        _initialPosition=LatLng(double.parse(Get.find<LocationController>().getAddress["latitude"]),
+            double.parse(Get.find<LocationController>().getAddress["longitude"]));
         _cameraPosition=CameraPosition(target: _initialPosition,zoom: 17);
       }
     }
   }
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LocationConroller>(builder: (locationController){
+    return GetBuilder<LocationController>(builder: (locationController){
       return Scaffold(
         body: SafeArea(
           child: Center(
@@ -61,7 +61,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     },
 
                     onCameraIdle: (){
-                      Get.find<LocationConroller>().updatePosition(_cameraPosition, false);
+                      Get.find<LocationController>().updatePosition(_cameraPosition, false);
                     },
                     onMapCreated: (GoogleMapController mapController){
                       _mapController=mapController;

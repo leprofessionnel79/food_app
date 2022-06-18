@@ -42,24 +42,24 @@ class _AddAddressPageState extends State<AddAddressPage> {
       Get.find<UserController>().getUserInfo();
     }
 
-    if (Get.find<LocationConroller>().addressList.isNotEmpty) {
+    if (Get.find<LocationController>().addressList.isNotEmpty) {
 
-      if(Get.find<LocationConroller>().getUserAddressFromLocalStorage()==""){
-        Get.find<LocationConroller>().saveUserAddress(
-            Get.find<LocationConroller>().addressList.last
+      if(Get.find<LocationController>().getUserAddressFromLocalStorage()==""){
+        Get.find<LocationController>().saveUserAddress(
+            Get.find<LocationController>().addressList.last
         );
       }
-      Get.find<LocationConroller>().getUserAddress();
+      Get.find<LocationController>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
               double.parse(
-                  Get.find<LocationConroller>().getAddress["latitude"]),
+                  Get.find<LocationController>().getAddress["latitude"]),
               double.parse(
-                  Get.find<LocationConroller>().getAddress["longitude"])));
+                  Get.find<LocationController>().getAddress["longitude"])));
 
       _initialPosition = LatLng(
-          double.parse(Get.find<LocationConroller>().getAddress["latitude"]),
-          double.parse(Get.find<LocationConroller>().getAddress["longitude"]));
+          double.parse(Get.find<LocationController>().getAddress["latitude"]),
+          double.parse(Get.find<LocationController>().getAddress["longitude"]));
     }
   }
 
@@ -77,11 +77,11 @@ class _AddAddressPageState extends State<AddAddressPage> {
           _contactPersonName.text = '${userController.userModel?.name}';
           _contactPersonNumber.text =  '${userController.userModel?.phone}';
 
-          if(Get.find<LocationConroller>().addressList.isNotEmpty){
-             _addressController.text = Get.find<LocationConroller>().getUserAddress().address;
+          if(Get.find<LocationController>().addressList.isNotEmpty){
+             _addressController.text = Get.find<LocationController>().getUserAddress().address;
           }
         }
-        return GetBuilder<LocationConroller>(builder: (locationcontroller) {
+        return GetBuilder<LocationController>(builder: (locationcontroller) {
           _addressController.text = '${locationcontroller.placemark.name??''}'
               '${locationcontroller.placemark.locality??''}'
               '${locationcontroller.placemark.postalCode??''}'
@@ -186,7 +186,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
         });
       }),
         bottomNavigationBar:
-        GetBuilder<LocationConroller>(builder: (locationController) {
+        GetBuilder<LocationController>(builder: (locationController) {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -11,10 +11,10 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/src/places.dart';
 
-class LocationConroller extends GetxController implements GetxService {
+class LocationController extends GetxController implements GetxService {
   LocationRepo locationRepo;
 
-  LocationConroller({required this.locationRepo});
+  LocationController({required this.locationRepo});
 
   bool _loading = false;
   bool get loading => _loading;
@@ -30,7 +30,7 @@ class LocationConroller extends GetxController implements GetxService {
   List<AddressModel> get addressList => _addressList;
   late List<AddressModel> _allAddressList;
   List<AddressModel> get allAddressList=>_allAddressList;
-  List<String> _addressTypeList = ["home", "office", "others"];
+  final List<String> _addressTypeList = ["home", "office", "others"];
   List<String> get addressTypeList => _addressTypeList;
   int _addressTypeIndex = 0;
   int get addressTypeIndex => _addressTypeIndex;

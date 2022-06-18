@@ -101,7 +101,7 @@ class AccountPage extends StatelessWidget {
                                   height: Dimensions.height10,
                                 ),
                                 // address
-                               GetBuilder<LocationConroller>(builder: (locationController){
+                               GetBuilder<LocationController>(builder: (locationController){
                                   if(_userLoggedIn&&locationController.addressList.isEmpty){
 
                                     return  GestureDetector(
@@ -168,7 +168,7 @@ class AccountPage extends StatelessWidget {
                                       Get.find<CartController>().clear();
                                       Get.find<CartController>()
                                           .clearCartHistory();
-                                      Get.find<LocationConroller>().clearAddressList();
+                                      Get.find<LocationController>().clearAddressList();
                                       Get.offNamed(RouteHelper.getSignInPage());
                                     } else {
                                       print("logged out");
