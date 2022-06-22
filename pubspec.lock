@@ -56,7 +56,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   dots_indicator:
     dependency: "direct main"
     description:
@@ -183,7 +183,7 @@ packages:
       name: geolocator_apple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.3"
+    version: "2.1.4"
   geolocator_platform_interface:
     dependency: transitive
     description:
@@ -211,7 +211,7 @@ packages:
       name: get
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.6.3"
+    version: "4.6.5"
   google_api_headers:
     dependency: transitive
     description:
@@ -232,14 +232,14 @@ packages:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "2.1.8"
   google_maps_flutter_platform_interface:
     dependency: transitive
     description:
       name: google_maps_flutter_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "2.2.0"
   google_maps_flutter_web:
     dependency: "direct main"
     description:
@@ -386,7 +386,7 @@ packages:
       name: path_provider_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.6"
+    version: "2.1.7"
   path_provider_platform_interface:
     dependency: transitive
     description:
@@ -400,7 +400,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.7"
   persistent_bottom_nav_bar:
     dependency: "direct main"
     description:
@@ -559,7 +559,7 @@ packages:
       name: typed_data
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.1"
+    version: "1.3.0"
   url_strategy:
     dependency: "direct main"
     description:

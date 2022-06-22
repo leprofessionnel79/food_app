@@ -97,6 +97,8 @@ class LocationController extends GetxController implements GetxService {
           fromAddress?_placemark=Placemark(name: _address)
           :_pickPlacemark=Placemark(name: _address);
 
+        }else{
+          _changeAddress=true;
         }
 
       } catch (e) {

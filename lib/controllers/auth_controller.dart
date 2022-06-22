@@ -41,6 +41,7 @@ class AuthController extends GetxController implements GetxService {
       responseModel = ResponseModel(response.body["token"], true);
     } else {
       responseModel = ResponseModel(response.statusText!, false);
+      print("response is  " + responseModel.message.toString());
     }
 
     _isLoading = false;

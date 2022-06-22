@@ -4,12 +4,12 @@ class AppConstants {
   /*
   http://10.0.2.2:80 this is IP for emulator
    */
-  static const String BASE_URL = "http://10.0.2.2/foodapp/public";
+  //static const String BASE_URL = "http://10.0.2.2/foodapp/public";
   /*
   //ahmad79.hopto.org or 192.168.1.33 which is the best bwt
-  http://192.168.1.20 this is IP of laptop where api server located 
+  http://192.168.226.1 this is IP of laptop where api server located
    */
-  //static const String BASE_URL = "http://192.168.1.20/foodapp/public";
+  static const String BASE_URL = "http://192.168.226.1/foodapp/public";
 
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
