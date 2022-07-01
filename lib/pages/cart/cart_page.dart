@@ -316,7 +316,7 @@ class CartPage extends StatelessWidget {
                                   cart: cart,
                                   orderAmount: 100.0,
                                   orderNote: "Not about Food",
-                                  address: "unknowen address",//??location.address,
+                                  address: "unknown address",//??location.address,
                                   latitude: "45.51563",//??location.latitude,
                                   longitude: "-122.677433",//??location.longitude,
                                   contactPersonName: user!.name,

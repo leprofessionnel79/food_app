@@ -101,13 +101,16 @@ class _PaymentPageState extends State<PaymentPage> {
   void _redirect(String url) {
     print("redirect");
     if(_canRedirect) {
-      bool _isSuccess = url.contains('success') && url.contains(AppConstants.BASE_URL);
+      bool _isSuccess = url.contains('success') ;//&& url.contains(AppConstants.BASE_URL);
+      print("success is "+_isSuccess.toString());
+      print("url is  "+url);
       bool _isFailed = url.contains('fail') && url.contains(AppConstants.BASE_URL);
       bool _isCancel = url.contains('cancel') && url.contains(AppConstants.BASE_URL);
       if (_isSuccess || _isFailed || _isCancel) {
         _canRedirect = false;
       }
       if (_isSuccess) {
+
         Get.offNamed(RouteHelper.getOrderSuccessPage(widget.orderModel.id.toString(), 'success'));
       } else if (_isFailed || _isCancel) {
         Get.offNamed(RouteHelper.getOrderSuccessPage(widget.orderModel.id.toString(), 'fail'));
