@@ -27,11 +27,12 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+# ^4.1.4
 dependencies:
   flutter:
     sdk: flutter
   dots_indicator: ^2.0.0
-  get: ^4.1.4
+  get: ^4.6.5
   persistent_bottom_nav_bar: ^4.0.2
   shared_preferences: ^2.0.11
   google_maps_flutter: ^2.1.2
@@ -41,6 +42,7 @@ dependencies:
   flutter_typeahead: ^3.1.3
   google_maps_flutter_web: ^0.3.0+2
   flutter_google_places: ^0.3.0
+  webview_flutter: ^2.0.9
   url_strategy:
 
 

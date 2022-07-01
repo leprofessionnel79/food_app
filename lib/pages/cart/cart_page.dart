@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/base/no_data_page.dart';
+import 'package:food_app/base/show_custom_snackbar.dart';
 import 'package:food_app/controllers/auth_controller.dart';
 import 'package:food_app/controllers/cart_controller.dart';
 import 'package:food_app/controllers/location_controller.dart';
+import 'package:food_app/controllers/order_controller.dart';
 import 'package:food_app/controllers/popular_product_controller.dart';
 import 'package:food_app/controllers/recommended_product_controller.dart';
+import 'package:food_app/controllers/user_controller.dart';
+import 'package:food_app/models/place_order_model.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/app_constants.dart';
@@ -294,13 +298,53 @@ class CartPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
+
                           if (Get.find<AuthController>().userLoggedIn()) {
+
                             if (Get.find<LocationController>()
                                 .addressList
                                 .isEmpty) {
-                              Get.toNamed(RouteHelper.getAddressPage());
-                            }else{
-                              Get.offNamed(RouteHelper.getInitial());
+
+                              //Get.offNamed(RouteHelper.getPaymentPage("100007", Get.find<UserController>().userModel!.id!));
+                              //Get.toNamed(RouteHelper.getAddressPage());
+                             // Get.find<OrderController>().placeOrder(_callBack);
+
+                             // var location = Get.find<LocationController>().getUserAddress();
+                              var cart = Get.find<CartController>().getItems;
+                              var user = Get.find<UserController>().userModel;
+                              PlaceOrderBody placeOrder = PlaceOrderBody(
+                                  cart: cart,
+                                  orderAmount: 100.0,
+                                  orderNote: "Not about Food",
+                                  address: "unknowen address",//??location.address,
+                                  latitude: "45.51563",//??location.latitude,
+                                  longitude: "-122.677433",//??location.longitude,
+                                  contactPersonName: user!.name,
+                                  contactPersonNumber: user!.phone,
+                                  scheduleAt: '',
+                                  distance: 10.0
+                              );
+                              Get.find<OrderController>().placeOrder(placeOrder,_callBack);
+                            }
+                            else{
+                             // Get.offNamed(RouteHelper.getInitial());
+                             // Get.offNamed(RouteHelper.getPaymentPage("200000", Get.find<UserController>().userModel!.id!));
+                              var location = Get.find<LocationController>().getUserAddress();
+                              var cart = Get.find<CartController>().getItems;
+                              var user = Get.find<UserController>().userModel;
+                              PlaceOrderBody placeOrder = PlaceOrderBody(
+                                cart: cart,
+                                orderAmount: 100.0,
+                                orderNote: "Not about Food",
+                                address: location.address??"unknowen address",
+                                latitude: location.latitude??"45.51563",
+                                longitude: location.longitude??"-122.677433",
+                                contactPersonName: user!.name,
+                                contactPersonNumber: user!.phone,
+                                scheduleAt: '',
+                                distance: 10.0
+                              );
+                              Get.find<OrderController>().placeOrder(placeOrder,_callBack);
                             }
                             cartController.addToHistory();
                           } else {
@@ -328,5 +372,13 @@ class CartPage extends StatelessWidget {
                 : Container(),
           );
         }));
+  }
+
+  void _callBack(bool isSuccess, String message , String orderID){
+    if(isSuccess){
+      Get.offNamed(RouteHelper.getPaymentPage(orderID, Get.find<UserController>().userModel!.id!));
+    }else{
+      showCustomSnackBar(message);
+    }
   }
 }

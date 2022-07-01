@@ -1,3 +1,4 @@
+import 'package:food_app/models/order_model.dart';
 import 'package:food_app/pages/address/add_address_page.dart';
 import 'package:food_app/pages/address/pick_address_map.dart';
 import 'package:food_app/pages/auth/sign_in_page.dart';
@@ -6,8 +7,11 @@ import 'package:food_app/pages/food/popular_food_detail.dart';
 import 'package:food_app/pages/food/recommended_food_details.dart';
 import 'package:food_app/pages/home/home_page.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
+import 'package:food_app/pages/payment/payment_page.dart';
 import 'package:food_app/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
+
+import '../pages/payment/order_success_page.dart';
 
 class RouteHelper {
   static const String initial = "/";
@@ -33,7 +37,14 @@ class RouteHelper {
   static const String addAddress = "/add-address";
   static String getAddressPage() => '$addAddress';
 
+  static const String payment ="/payment";
+  static const String orderSuccess ="/order-successful";
+
   static const String pickAddressMap = "/pick-address";
+
+  static String getPaymentPage(String id ,int userID)=>'$payment?id=$id&userID=$userID';
+  static String getOrderSuccessPage(String orderID , String status)=>'$orderSuccess?id=$orderID&status=$status';
+  
   static String getPickAddressPage() => '$pickAddressMap';
   static List<GetPage> routes = [
     GetPage(name: pickAddressMap, page: (){
@@ -76,5 +87,17 @@ class RouteHelper {
         page: () {
           return AddAddressPage();
         }),
+    GetPage(name: payment, page: ()=>PaymentPage(
+        orderModel:OrderModel(
+          id: int.parse(Get.parameters['id']!),
+          userId: int.parse(Get.parameters['userID']!)
+
+        )
+    )),
+
+    GetPage(name: orderSuccess, page: ()=>OrderSuccessPage(
+      orderID:Get.parameters['id']!,
+      status:Get.parameters['status'].toString().contains("success")?1:0,
+    )),
   ];
 }
