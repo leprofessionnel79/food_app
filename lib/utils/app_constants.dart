@@ -35,5 +35,5 @@ class AppConstants {
   static const String TOKEN = "";
   static const String UPLOADS = "/uploads/";
   static const String CART_LIST = "Cart-list";
-  static const String CART_LIST_HISTORY = "history-cart-list";
+  static const String CART_HISTORY_LIST = "history-cart-list";
 }
