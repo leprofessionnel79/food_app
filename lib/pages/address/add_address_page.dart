@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../widgets/app_icons.dart';
+import '../account/account_page.dart';
 
 class AddAddressPage extends StatefulWidget {
   const AddAddressPage({Key? key}) : super(key: key);
@@ -71,6 +72,11 @@ class _AddAddressPageState extends State<AddAddressPage> {
             alignment: Alignment.center,
             child: Text("Address Page")),
         backgroundColor: AppColors.mainColor,
+        leading: GestureDetector(
+            onTap: (){
+              Get.offNamed(RouteHelper.getInitial());
+            },
+            child: Icon(Icons.arrow_back)),
       ),
       body: GetBuilder<UserController>(builder: (userController){
         if(userController.userModel!=null&& _contactPersonName.text.isEmpty){
