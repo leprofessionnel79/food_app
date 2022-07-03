@@ -23,7 +23,7 @@ class AppConstants {
   // order
 
   static const String PLACE_ORDER_URI = "/api/v1/customer/order/place";
-
+  static const String ORDER_LIST_URI = "/api/v1/customer/order/list";
   // auth and user end points
   static const String REGISTRATION_URI = "/api/v1/auth/register";
   static const String LOGIN_URI = "/api/v1/auth/login";

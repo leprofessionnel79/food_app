@@ -68,9 +68,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Align(
-            alignment: Alignment.center,
-            child: Text("Address Page")),
+        title:  Padding(
+          padding:EdgeInsets.only(left: Dimensions.width45*2),
+          child: Text("Address Page"),
+        ),
         backgroundColor: AppColors.mainColor,
         leading: GestureDetector(
             onTap: (){

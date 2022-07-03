@@ -305,11 +305,10 @@ class CartPage extends StatelessWidget {
                                 .addressList
                                 .isEmpty) {
 
-                              //Get.offNamed(RouteHelper.getPaymentPage("100007", Get.find<UserController>().userModel!.id!));
-                              //Get.toNamed(RouteHelper.getAddressPage());
-                             // Get.find<OrderController>().placeOrder(_callBack);
+                              Get.toNamed(RouteHelper.getAddressPage());
 
                              // var location = Get.find<LocationController>().getUserAddress();
+                              // from line 312 to line 326 just for testing it shouldn't be in this block
                               var cart = Get.find<CartController>().getItems;
                               var user = Get.find<UserController>().userModel;
                               PlaceOrderBody placeOrder = PlaceOrderBody(
@@ -328,7 +327,6 @@ class CartPage extends StatelessWidget {
                             }
                             else{
                              // Get.offNamed(RouteHelper.getInitial());
-                             // Get.offNamed(RouteHelper.getPaymentPage("200000", Get.find<UserController>().userModel!.id!));
                               var location = Get.find<LocationController>().getUserAddress();
                               var cart = Get.find<CartController>().getItems;
                               var user = Get.find<UserController>().userModel;
