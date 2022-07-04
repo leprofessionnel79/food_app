@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/controllers/auth_controller.dart';
+import 'package:food_app/pages/auth/sign_in_page.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
@@ -27,14 +28,16 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin{
     if(_isLoggedIn){
       _tabController = TabController(length: 2, vsync: this);
       Get.find<OrderController>().getOrderList();
-    }else{
-      Get.toNamed(RouteHelper.getSignInPage());
     }
+    // else{
+    //   Get.toNamed(RouteHelper.getSignInPage());
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    return _isLoggedIn?Scaffold(
       appBar: AppBar(
         title: Padding(
           padding:  EdgeInsets.only(left: Dimensions.width45*2),
@@ -69,6 +72,6 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin{
           )
         ],
       ),
-    );
+    ):Center(child: Container(child: Text("Please Signe In First"),));
   }
 }

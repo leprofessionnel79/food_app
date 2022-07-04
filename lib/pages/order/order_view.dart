@@ -67,7 +67,7 @@ class ViewOrder extends StatelessWidget {
                                         ),
                                       child: Container(
                                         margin: EdgeInsets.all(Dimensions.height10/2),
-                                        child: Text('Track Order'),
+                                        child: const Text('Track Order'),
                                       ),
                                     ),
                                   )
