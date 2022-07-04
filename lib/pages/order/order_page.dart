@@ -8,6 +8,7 @@ import 'package:food_app/utils/dimensions.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/order_controller.dart';
+import '../../widgets/big_text.dart';
 import 'order_view.dart';
 
 class OrderPage extends StatefulWidget {
@@ -72,6 +73,66 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin{
           )
         ],
       ),
-    ):Center(child: Container(child: Text("Please Signe In First"),));
+    ):Center(
+      child: Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+
+        children: [
+          Container(
+            height: Dimensions.height10*9,
+            width: double.maxFinite,
+            color: AppColors.mainColor,
+            //padding: EdgeInsets.only(top: Dimensions.height45),
+            child:Center(
+              child: Container(
+                margin: EdgeInsets.only(top: Dimensions.height30),
+                child: BigText(
+                  text: "My Orders",
+                  color: Colors.white,
+                  size: Dimensions.font26,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: double.maxFinite,
+            height: Dimensions.height20 * 8,
+            margin: EdgeInsets.only(
+                left: Dimensions.width20, right: Dimensions.width20,
+            top: Dimensions.height120
+            ),
+            decoration: BoxDecoration(
+                borderRadius:
+                BorderRadius.circular(Dimensions.radius20),
+                image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                        "assets/image/signintocontinue.png"))),
+          ),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(RouteHelper.getSignInPage());
+            },
+            child: Container(
+              width: double.maxFinite,
+              height: Dimensions.height20 * 5,
+              margin: EdgeInsets.only(
+                  left: Dimensions.width20,
+                  right: Dimensions.width20),
+              decoration: BoxDecoration(
+                  borderRadius:
+                  BorderRadius.circular(Dimensions.radius20),
+                  color: AppColors.mainColor),
+              child: Center(
+                  child: BigText(
+                    text: "Sign In",
+                    color: Colors.white,
+                    size: Dimensions.font26,
+                  )),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
