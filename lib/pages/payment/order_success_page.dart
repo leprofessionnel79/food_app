@@ -23,6 +23,7 @@ class OrderSuccessPage extends StatelessWidget {
       body: Center(child: SizedBox(width: Dimensions.screenWidth,child:
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
             Icon(status==1?Icons.check_circle_outline:Icons.warning_amber_outlined,
             size: 100,color: AppColors.mainColor,),

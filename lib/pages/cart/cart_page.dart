@@ -305,10 +305,10 @@ class CartPage extends StatelessWidget {
                                 .addressList
                                 .isEmpty) {
 
-                              Get.toNamed(RouteHelper.getAddressPage());
+                             // Get.toNamed(RouteHelper.getAddressPage());
+                              // from line 311 to line 326 just for testing it shouldn't be in this block
 
-                             // var location = Get.find<LocationController>().getUserAddress();
-                              // from line 312 to line 326 just for testing it shouldn't be in this block
+                              // var location = Get.find<LocationController>().getUserAddress();
                               var cart = Get.find<CartController>().getItems;
                               var user = Get.find<UserController>().userModel;
                               PlaceOrderBody placeOrder = PlaceOrderBody(

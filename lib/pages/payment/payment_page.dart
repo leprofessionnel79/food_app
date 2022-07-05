@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/controllers/order_controller.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -22,6 +23,7 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+
   late String selectedUrl;
   double value = 0.0;
   bool _canRedirect = true;
@@ -39,6 +41,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return WillPopScope(
       onWillPop: () => _exitApp(context),
       child: Scaffold(
@@ -53,7 +56,11 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           backgroundColor: AppColors.mainColor,
         ),
-        body: Center(  // in this section u can set the cash pay method
+        body: Get.find<OrderController>().isLoading?
+        Center(
+          child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)),
+        ):
+        Center(  // in this section u can set the cash pay method
           child: Container(
             width: Dimensions.screenWidth,
             child: Stack(
@@ -71,17 +78,32 @@ class _PaymentPageState extends State<PaymentPage> {
                           style: TextStyle(fontSize: Dimensions.font20),
                         ),
                         SizedBox(height: Dimensions.height20,),
-                        Text(
-                          "Its Cash ON Delivery ",
-                          style: TextStyle(fontSize: Dimensions.font20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Its Cash ON Delivery ",
+                              style: TextStyle(fontSize: Dimensions.font20),
+                            ),
+                            SizedBox(width: Dimensions.width20,),
+                            Text(
+                              "\$",
+                              style: TextStyle(fontSize: Dimensions.font17*2,
+                              color:AppColors.mainColor,
+                              fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            Icon(Icons.money_outlined,
+                              size: 45,color: AppColors.mainColor,)
+                          ],
                         ),
                         SizedBox(height: Dimensions.height20,),
 
                      SizedBox(
                         width: Dimensions.screenWidth/2,
                        child: Padding(padding: EdgeInsets.only(
-                        top:Dimensions.height10,
-                        right: Dimensions.height20,
+                        top:Dimensions.height30,
+                        //right: Dimensions.height10,
                       //left: Dimensions.height20
                       ),
                           child: CustomButton(buttonText: "Back to Home",onPressed:
@@ -94,7 +116,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     ),
 
 
-               //-------------------- PAYPAL METHOD ----------------------------
+               //-------------------- PAYPAL METHOD ----------------------------//
 
                 // if you want paypal method payment uncomment WebView section and comment
                 // which above
