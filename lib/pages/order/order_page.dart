@@ -40,12 +40,11 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin{
 
     return _isLoggedIn?Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding:  EdgeInsets.only(left: Dimensions.width45*2),
+        title: const Center(
           child: Text("My Orders"),
         ),
         backgroundColor: AppColors.mainColor,
-        leading: const Icon(Icons.arrow_back),
+        //leading: const Icon(Icons.arrow_back),
       ),
       body: Column(
         children: [

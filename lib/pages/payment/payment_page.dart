@@ -65,95 +65,100 @@ class _PaymentPageState extends State<PaymentPage> {
             width: Dimensions.screenWidth,
             child: Stack(
               alignment: AlignmentDirectional.center,
+              //--------------- cash pay method starts here --------------//
               children: [
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(Icons.check_circle_outline,
-                          size: 100,color: AppColors.mainColor,),
-                        SizedBox(height: Dimensions.height30,),
-                        Text(
-                          "You place the order successfully ",
-                          style: TextStyle(fontSize: Dimensions.font20),
-                        ),
-                        SizedBox(height: Dimensions.height20,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Its Cash ON Delivery ",
-                              style: TextStyle(fontSize: Dimensions.font20),
-                            ),
-                            SizedBox(width: Dimensions.width20,),
-                            Text(
-                              "\$",
-                              style: TextStyle(fontSize: Dimensions.font17*2,
-                              color:AppColors.mainColor,
-                              fontWeight: FontWeight.bold
-                              ),
-                            ),
-                            Icon(Icons.money_outlined,
-                              size: 45,color: AppColors.mainColor,)
-                          ],
-                        ),
-                        SizedBox(height: Dimensions.height20,),
-
-                     SizedBox(
-                        width: Dimensions.screenWidth/2,
-                       child: Padding(padding: EdgeInsets.only(
-                        top:Dimensions.height30,
-                        //right: Dimensions.height10,
-                      //left: Dimensions.height20
-                      ),
-                          child: CustomButton(buttonText: "Back to Home",onPressed:
-                          ()=> Get.offAllNamed(RouteHelper.getInitial())
-                        ,),
-                    ),
-              ),
-
-                      ],
-                    ),
+              //     Column(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: [
+              //           Icon(Icons.check_circle_outline,
+              //             size: 100,color: AppColors.mainColor,),
+              //           SizedBox(height: Dimensions.height30,),
+              //           Text(
+              //             "You place the order successfully ",
+              //             style: TextStyle(fontSize: Dimensions.font20),
+              //           ),
+              //           SizedBox(height: Dimensions.height20,),
+              //           Row(
+              //             mainAxisAlignment: MainAxisAlignment.center,
+              //             children: [
+              //               Container(
+              //                 //color: AppColors.mainColor,
+              //                 padding: EdgeInsets.all(13),
+              //                 margin: EdgeInsets.only(bottom: Dimensions.height10),
+              //                 decoration: BoxDecoration(
+              //                   borderRadius: BorderRadius.circular(Dimensions.radius15),
+              //                   color: AppColors.yellowColor,
+              //                 ),
+              //                 child: Text(
+              //                   "It is Cash ON Delivery ",
+              //                   style: TextStyle(fontSize: Dimensions.font20,
+              //                       color: Colors.white,
+              //
+              //                   ),
+              //                 ),
+              //               ),
+              //               SizedBox(width: Dimensions.width20,),
+              //               Image.asset("assets/image/money.png")
+              //             ],
+              //           ),
+              //           SizedBox(height: Dimensions.height20,),
+              //
+              //        SizedBox(
+              //           width: Dimensions.screenWidth/2,
+              //          child: Padding(padding: EdgeInsets.only(
+              //           top:Dimensions.height30,
+              //           //right: Dimensions.height10,
+              //         //left: Dimensions.height20
+              //         ),
+              //             child: CustomButton(buttonText: "Back to Home",onPressed:
+              //             ()=> Get.offAllNamed(RouteHelper.getInitial())
+              //           ,),
+              //       ),
+              // ),
+              //
+              //         ],
+              //       ),
 
 
                //-------------------- PAYPAL METHOD ----------------------------//
 
                 // if you want paypal method payment uncomment WebView section and comment
                 // which above
-                // WebView(
-                //   javascriptMode: JavascriptMode.unrestricted,
-                //   initialUrl: selectedUrl,
-                //   gestureNavigationEnabled: true,
-                //
-                //   userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E233 Safari/601.1',
-                //   onWebViewCreated: (WebViewController webViewController) {
-                //     _controller.future.then((value) => controllerGlobal = value);
-                //     _controller.complete(webViewController);
-                //     //_controller.future.catchError(onError)
-                //   },
-                //   onProgress: (int progress) {
-                //     print("WebView is loading (progress : $progress%)");
-                //   },
-                //   onPageStarted: (String url) {
-                //     print('Page started loading: $url');
-                //     setState(() {
-                //       _isLoading = true;
-                //     });
-                //     print("printing urls "+url.toString());
-                //     _redirect(url);
-                //
-                //   },
-                //   onPageFinished: (String url) {
-                //     print('Page finished loading: $url');
-                //     setState(() {
-                //       _isLoading = false;
-                //     });
-                //     _redirect(url);
-                //
-                //   },
-                // ),
+                WebView(
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: selectedUrl,
+                  gestureNavigationEnabled: true,
+
+                  userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E233 Safari/601.1',
+                  onWebViewCreated: (WebViewController webViewController) {
+                    _controller.future.then((value) => controllerGlobal = value);
+                    _controller.complete(webViewController);
+                    //_controller.future.catchError(onError)
+                  },
+                  onProgress: (int progress) {
+                    print("WebView is loading (progress : $progress%)");
+                  },
+                  onPageStarted: (String url) {
+                    print('Page started loading: $url');
+                    setState(() {
+                      _isLoading = true;
+                    });
+                    print("printing urls "+url.toString());
+                    _redirect(url);
+
+                  },
+                  onPageFinished: (String url) {
+                    print('Page finished loading: $url');
+                    setState(() {
+                      _isLoading = false;
+                    });
+                    _redirect(url);
+
+                  },
+                ),
                 // for paypal method you have remove "!" from _isLoading in next line
-                !_isLoading ? Center(
+                _isLoading ? Center(
                   child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)),
                 ) : SizedBox.shrink(),
               ],

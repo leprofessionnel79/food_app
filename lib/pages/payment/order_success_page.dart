@@ -28,9 +28,18 @@ class OrderSuccessPage extends StatelessWidget {
             Icon(status==1?Icons.check_circle_outline:Icons.warning_amber_outlined,
             size: 100,color: AppColors.mainColor,),
             SizedBox(height: Dimensions.height30,),
-            Text(
-              status==1?"You place the order successfully ":"Your order failed !!",
-              style: TextStyle(fontSize: Dimensions.font20),
+            Container(
+              padding: EdgeInsets.all(13),
+              margin: EdgeInsets.only(bottom: Dimensions.height10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius15),
+                color: AppColors.yellowColor,
+              ),
+              child: Text(
+                status==1?"You place the order successfully ":"Your order failed !!",
+                style: TextStyle(fontSize: Dimensions.font20,
+                  color: Colors.white,),
+              ),
             ),
             SizedBox(height: Dimensions.height20,),
             Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.height20,
