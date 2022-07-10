@@ -42,7 +42,7 @@ class RouteHelper {
 
   static const String pickAddressMap = "/pick-address";
 
-  static String getPaymentPage(String id ,int userID)=>'$payment?id=$id&userID=$userID';
+  static String getPaymentPage(String id ,int userID,String paymentType)=>'$payment?id=$id&userID=$userID&paymentType=$paymentType';
   static String getOrderSuccessPage(String orderID , String status)=>'$orderSuccess?id=$orderID&status=$status';
   
   static String getPickAddressPage() => '$pickAddressMap';
@@ -87,13 +87,17 @@ class RouteHelper {
         page: () {
           return AddAddressPage();
         }),
-    GetPage(name: payment, page: ()=>PaymentPage(
+    GetPage(name: payment, page: (){
+      String? paymentType = Get.parameters['paymentType'];
+      return PaymentPage(
+
         orderModel:OrderModel(
           id: int.parse(Get.parameters['id']!),
-          userId: int.parse(Get.parameters['userID']!)
+          userId: int.parse(Get.parameters['userID']!),
 
-        )
-    )),
+        ),
+        paymentType: paymentType!,
+    );}),
 
     GetPage(name: orderSuccess, page: ()=>OrderSuccessPage(
       orderID:Get.parameters['id']!,

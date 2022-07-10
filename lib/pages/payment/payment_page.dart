@@ -16,7 +16,8 @@ import 'package:get/get.dart';
 
 class PaymentPage extends StatefulWidget {
   final OrderModel orderModel;
-  PaymentPage({required this.orderModel});
+  final String paymentType;
+  PaymentPage({required this.orderModel, required this.paymentType});
 
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -25,6 +26,7 @@ class PaymentPage extends StatefulWidget {
 class _PaymentPageState extends State<PaymentPage> {
 
   late String selectedUrl;
+  late String paymentTp;
   double value = 0.0;
   bool _canRedirect = true;
   bool _isLoading = true;
@@ -35,6 +37,7 @@ class _PaymentPageState extends State<PaymentPage> {
   void initState() {
     super.initState();
     selectedUrl = '${AppConstants.BASE_URL}/payment-mobile?customer_id=${widget.orderModel.userId}&order_id=${widget.orderModel.id}';
+    paymentTp = widget.paymentType;
     //selectedUrl="https://mvs.bslmeiyu.com";
     // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
@@ -56,69 +59,73 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           backgroundColor: AppColors.mainColor,
         ),
-        body: Get.find<OrderController>().isLoading?
-        Center(
-          child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)),
-        ):
+
+        // Get.find<OrderController>().isLoading?
+        // Center(
+        //   child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)),
+        // ):
+        body:
         Center(  // in this section u can set the cash pay method
-          child: Container(
+          child:Container(
             width: Dimensions.screenWidth,
             child: Stack(
+
               alignment: AlignmentDirectional.center,
               //--------------- cash pay method starts here --------------//
               children: [
-              //     Column(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         crossAxisAlignment: CrossAxisAlignment.center,
-              //         children: [
-              //           Icon(Icons.check_circle_outline,
-              //             size: 100,color: AppColors.mainColor,),
-              //           SizedBox(height: Dimensions.height30,),
-              //           Text(
-              //             "You place the order successfully ",
-              //             style: TextStyle(fontSize: Dimensions.font20),
-              //           ),
-              //           SizedBox(height: Dimensions.height20,),
-              //           Row(
-              //             mainAxisAlignment: MainAxisAlignment.center,
-              //             children: [
-              //               Container(
-              //                 //color: AppColors.mainColor,
-              //                 padding: EdgeInsets.all(13),
-              //                 margin: EdgeInsets.only(bottom: Dimensions.height10),
-              //                 decoration: BoxDecoration(
-              //                   borderRadius: BorderRadius.circular(Dimensions.radius15),
-              //                   color: AppColors.yellowColor,
-              //                 ),
-              //                 child: Text(
-              //                   "It is Cash ON Delivery ",
-              //                   style: TextStyle(fontSize: Dimensions.font20,
-              //                       color: Colors.white,
-              //
-              //                   ),
-              //                 ),
-              //               ),
-              //               SizedBox(width: Dimensions.width20,),
-              //               Image.asset("assets/image/money.png")
-              //             ],
-              //           ),
-              //           SizedBox(height: Dimensions.height20,),
-              //
-              //        SizedBox(
-              //           width: Dimensions.screenWidth/2,
-              //          child: Padding(padding: EdgeInsets.only(
-              //           top:Dimensions.height30,
-              //           //right: Dimensions.height10,
-              //         //left: Dimensions.height20
-              //         ),
-              //             child: CustomButton(buttonText: "Back to Home",onPressed:
-              //             ()=> Get.offAllNamed(RouteHelper.getInitial())
-              //           ,),
-              //       ),
-              // ),
-              //
-              //         ],
-              //       ),
+                paymentTp=='cash'? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.check_circle_outline,
+                          size: 100,color: AppColors.mainColor,),
+                        SizedBox(height: Dimensions.height30,),
+                        Text(
+                          "You place the order successfully ",
+                          style: TextStyle(fontSize: Dimensions.font20),
+                        ),
+                        SizedBox(height: Dimensions.height20,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              //color: AppColors.mainColor,
+                              padding: EdgeInsets.all(13),
+                              margin: EdgeInsets.only(bottom: Dimensions.height10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(Dimensions.radius15),
+                                color: AppColors.yellowColor,
+                              ),
+                              child: Text(
+                                "It is Cash ON Delivery ",
+                                style: TextStyle(fontSize: Dimensions.font20,
+                                    color: Colors.white,
+
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: Dimensions.width20,),
+                            Image.asset("assets/image/money.png")
+                          ],
+                        ),
+                        SizedBox(height: Dimensions.height20,),
+
+                     SizedBox(
+                        width: Dimensions.screenWidth/2,
+                       child: Padding(padding: EdgeInsets.only(
+                        top:Dimensions.height30,
+                        //right: Dimensions.height10,
+                      //left: Dimensions.height20
+                      ),
+                          child: CustomButton(buttonText: "Back to Home",onPressed:
+                          ()=> Get.offAllNamed(RouteHelper.getInitial())
+                        ,),
+                    ),
+              ),
+
+                      ],
+
+                    ):
 
 
                //-------------------- PAYPAL METHOD ----------------------------//
@@ -160,7 +167,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 // for paypal method you have remove "!" from _isLoading in next line
                 _isLoading ? Center(
                   child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)),
-                ) : SizedBox.shrink(),
+                ) : const SizedBox.shrink(),
               ],
             ),
           ),

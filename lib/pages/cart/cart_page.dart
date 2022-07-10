@@ -20,6 +20,9 @@ import 'package:food_app/widgets/small_text.dart';
 import 'package:get/get.dart';
 import 'package:food_app/controllers/location_controller.dart';
 
+import '../../controllers/button_radio_controller.dart';
+import '../../widgets/button_radio.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -256,7 +259,7 @@ class CartPage extends StatelessWidget {
         bottomNavigationBar:
             GetBuilder<CartController>(builder: (cartController) {
           return Container(
-            height: Dimensions.height100 / 1.12,
+            height: Dimensions.height120 ,
             padding: EdgeInsets.only(
                 top: Dimensions.height10,
                 bottom: Dimensions.height10,
@@ -285,7 +288,7 @@ class CartPage extends StatelessWidget {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: Dimensions.width10 / 1.5,
+                              width: Dimensions.width10 / 2,
                             ),
                             BigText(
                                 text: "\$ " +
@@ -296,6 +299,28 @@ class CartPage extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(
+                        width: Dimensions.width20 *2,
+                      ),
+                       Container(
+                          //width: 5,
+                          child:  Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ButtonRadio(
+                                  value: 'paypal',
+                                  title: 'PayPal'
+                                ),
+                                ButtonRadio(
+                                    value: 'cash',
+                                    title: 'Cash'
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
                       GestureDetector(
                         onTap: () {
 
@@ -372,12 +397,12 @@ class CartPage extends StatelessWidget {
         }));
   }
 
-  void _callBack(bool isSuccess, String message , String orderID){
+  void _callBack(bool isSuccess, String message , String orderID,String paymentType){
     if(isSuccess){
       Get.find<CartController>().clear();
       Get.find<CartController>().removeCartSharedPreference();
       Get.find<CartController>().addToHistory();
-      Get.offNamed(RouteHelper.getPaymentPage(orderID, Get.find<UserController>().userModel!.id!));
+      Get.offNamed(RouteHelper.getPaymentPage(orderID, Get.find<UserController>().userModel!.id,Get.find<ButtonRadioController>().paymentType));
     }else{
       showCustomSnackBar(message);
     }

@@ -14,10 +14,12 @@ import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'controllers/button_radio_controller.dart';
 import 'helper/dependencies.dart' as dep;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 Future<void> main() async {
+  Get.put(ButtonRadioController());
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
