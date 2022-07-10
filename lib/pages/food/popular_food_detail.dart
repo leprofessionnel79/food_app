@@ -179,11 +179,11 @@ class PopularFoodDetail extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: Dimensions.width10 / 1.5,
+                        width: Dimensions.width30 / 2,
                       ),
                       BigText(text: popularProduct.inCartItems.toString()),
                       SizedBox(
-                        width: Dimensions.width10 / 1.5,
+                        width: Dimensions.width30 / 2,
                       ),
                       GestureDetector(
                         onTap: () {

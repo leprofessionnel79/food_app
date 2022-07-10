@@ -29,7 +29,12 @@ class ButtonRadio extends StatelessWidget {
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
               SizedBox(width: Dimensions.width10,),
-              Text(title)
+              Text(title,
+              style: TextStyle(
+                fontSize: Dimensions.font17,
+                //fontWeight: FontWeight.bold,
+                color: title=="Cash"?Colors.green:Colors.blue
+              ),)
             ],
           ),
         );

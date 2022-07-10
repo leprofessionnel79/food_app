@@ -196,6 +196,7 @@ class CartPage extends StatelessWidget {
                                                         color: Colors.white),
                                                     child: Row(
                                                       children: [
+
                                                         GestureDetector(
                                                           onTap: () {
                                                             cartController.addItem(
@@ -208,10 +209,11 @@ class CartPage extends StatelessWidget {
                                                             color: AppColors
                                                                 .signColor,
                                                           ),
+
                                                         ),
                                                         SizedBox(
                                                           width: Dimensions
-                                                                  .width10 /
+                                                                  .width30 /
                                                               1.5,
                                                         ),
                                                         BigText(
@@ -221,7 +223,7 @@ class CartPage extends StatelessWidget {
                                                                 .toString()), //popularProduct.inCartItems.toString()),
                                                         SizedBox(
                                                           width: Dimensions
-                                                                  .width10 /
+                                                                  .width30 /
                                                               1.5,
                                                         ),
                                                         GestureDetector(
@@ -259,7 +261,7 @@ class CartPage extends StatelessWidget {
         bottomNavigationBar:
             GetBuilder<CartController>(builder: (cartController) {
           return Container(
-            height: Dimensions.height120 ,
+            height: Dimensions.height100 ,
             padding: EdgeInsets.only(
                 top: Dimensions.height10,
                 bottom: Dimensions.height10,
@@ -279,7 +281,7 @@ class CartPage extends StatelessWidget {
                         padding: EdgeInsets.only(
                             top: Dimensions.height15,
                             bottom: Dimensions.height15,
-                            left: Dimensions.width15,
+                            left: Dimensions.width10/2,
                             right: Dimensions.width15),
                         decoration: BoxDecoration(
                             borderRadius:
@@ -287,9 +289,9 @@ class CartPage extends StatelessWidget {
                             color: Colors.white),
                         child: Row(
                           children: [
-                            SizedBox(
-                              width: Dimensions.width10 / 2,
-                            ),
+                            // SizedBox(
+                            //   width: Dimensions.width10 / 2,
+                            // ),
                             BigText(
                                 text: "\$ " +
                                     cartController.totalAmount.toString()),
@@ -300,26 +302,27 @@ class CartPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: Dimensions.width20 *2,
+                        width: Dimensions.width10 /2,
                       ),
                        Container(
-                          //width: 5,
-                          child:  Expanded(
+                            //width: 5,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ButtonRadio(
-                                  value: 'paypal',
-                                  title: 'PayPal'
-                                ),
-                                ButtonRadio(
-                                    value: 'cash',
-                                    title: 'Cash'
-                                ),
-                              ],
-                            ),
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ButtonRadio(
+                                    value: 'paypal',
+                                    title: 'PayPal'
+                                  ),
+                                  ButtonRadio(
+                                      value: 'cash',
+                                      title: 'Cash'
+                                  ),
+                                ],
+                              ),
+
                           ),
-                        ),
+
 
                       GestureDetector(
                         onTap: () {

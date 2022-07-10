@@ -73,66 +73,14 @@ class _PaymentPageState extends State<PaymentPage> {
               alignment: AlignmentDirectional.center,
               //--------------- cash pay method starts here --------------//
               children: [
-                paymentTp=='cash'? Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(Icons.check_circle_outline,
-                          size: 100,color: AppColors.mainColor,),
-                        SizedBox(height: Dimensions.height30,),
-                        Text(
-                          "You place the order successfully ",
-                          style: TextStyle(fontSize: Dimensions.font20),
-                        ),
-                        SizedBox(height: Dimensions.height20,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              //color: AppColors.mainColor,
-                              padding: EdgeInsets.all(13),
-                              margin: EdgeInsets.only(bottom: Dimensions.height10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(Dimensions.radius15),
-                                color: AppColors.yellowColor,
-                              ),
-                              child: Text(
-                                "It is Cash ON Delivery ",
-                                style: TextStyle(fontSize: Dimensions.font20,
-                                    color: Colors.white,
 
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: Dimensions.width20,),
-                            Image.asset("assets/image/money.png")
-                          ],
-                        ),
-                        SizedBox(height: Dimensions.height20,),
-
-                     SizedBox(
-                        width: Dimensions.screenWidth/2,
-                       child: Padding(padding: EdgeInsets.only(
-                        top:Dimensions.height30,
-                        //right: Dimensions.height10,
-                      //left: Dimensions.height20
-                      ),
-                          child: CustomButton(buttonText: "Back to Home",onPressed:
-                          ()=> Get.offAllNamed(RouteHelper.getInitial())
-                        ,),
-                    ),
-              ),
-
-                      ],
-
-                    ):
 
 
                //-------------------- PAYPAL METHOD ----------------------------//
 
                 // if you want paypal method payment uncomment WebView section and comment
                 // which above
-                WebView(
+                paymentTp=="paypal"?WebView(
                   javascriptMode: JavascriptMode.unrestricted,
                   initialUrl: selectedUrl,
                   gestureNavigationEnabled: true,
@@ -163,9 +111,63 @@ class _PaymentPageState extends State<PaymentPage> {
                     _redirect(url);
 
                   },
+                ):Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.check_circle_outline,
+                      size: 100,color: AppColors.mainColor,),
+                    SizedBox(height: Dimensions.height30,),
+                    Text(
+                      "You place the order successfully ",
+                      style: TextStyle(fontSize: Dimensions.font20),
+                    ),
+                    SizedBox(height: Dimensions.height20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          //color: AppColors.mainColor,
+                          padding: EdgeInsets.all(13),
+                          margin: EdgeInsets.only(bottom: Dimensions.height10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(Dimensions.radius15),
+                            color: AppColors.yellowColor,
+                          ),
+                          child: Text(
+                            "It is Cash ON Delivery ",
+                            style: TextStyle(fontSize: Dimensions.font20,
+                              color: Colors.white,
+
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: Dimensions.width20,),
+                        Image.asset("assets/image/money.png")
+                      ],
+                    ),
+                    SizedBox(height: Dimensions.height20,),
+
+                    SizedBox(
+                      width: Dimensions.screenWidth/2,
+                      child: Padding(padding: EdgeInsets.only(
+                        top:Dimensions.height30,
+                        //right: Dimensions.height10,
+                        //left: Dimensions.height20
+                      ),
+                        child: CustomButton(buttonText: "Back to Home",onPressed:
+                            ()=> Get.offAllNamed(RouteHelper.getInitial())
+                          ,),
+                      ),
+                    ),
+
+                  ],
+
                 ),
+
                 // for paypal method you have remove "!" from _isLoading in next line
-                _isLoading ? Center(
+                _isLoading?
+                Center(
                   child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)),
                 ) : const SizedBox.shrink(),
               ],
