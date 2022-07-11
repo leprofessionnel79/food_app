@@ -17,11 +17,14 @@ import 'package:url_strategy/url_strategy.dart';
 import 'controllers/button_radio_controller.dart';
 import 'helper/dependencies.dart' as dep;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   Get.put(ButtonRadioController());
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await dep.init();
   runApp(const MyApp());
 }

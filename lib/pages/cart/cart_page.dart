@@ -305,7 +305,7 @@ class CartPage extends StatelessWidget {
                         width: Dimensions.width10 /2,
                       ),
                        Container(
-                            //width: 5,
+                            margin: EdgeInsets.only(right: Dimensions.width10/2),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
