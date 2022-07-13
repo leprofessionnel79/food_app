@@ -69,7 +69,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 );
         }),
         GetBuilder<PopularProductController>(builder: (popularProducts) {
-          return new DotsIndicator(
+          return DotsIndicator(
             dotsCount: popularProducts.popularProductsList.isEmpty
                 ? 1
                 : popularProducts.popularProductsList.length,
@@ -284,7 +284,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius30),
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                         color: Color(0xFFe8e8e8),
                         blurRadius: 5.0,

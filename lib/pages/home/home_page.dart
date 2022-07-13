@@ -49,21 +49,30 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: AppColors.mainColor,
         unselectedItemColor: Colors.amberAccent,
+        type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         selectedFontSize: 0.0,
         unselectedFontSize: 0.0,
         currentIndex: _selectedIndex,
         onTap: onTapNav,
-        items: [
-          const BottomNavigationBarItem(
-              icon: const Icon(Icons.home_outlined), label: "Home"),
-          const BottomNavigationBarItem(
-              icon: const Icon(Icons.archive), label: "Archive"),
-          const BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: "Cart"),
-          const BottomNavigationBarItem(
-              icon: const Icon(Icons.person), label: "Person"),
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home_filled),
+              label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.archive),
+              activeIcon: Icon(Icons.archive_rounded),
+              label: "Archive"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart),
+              activeIcon: Icon(Icons.shopping_cart_outlined)
+              , label: "Cart"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              activeIcon: Icon(Icons.person_outline),
+              label: "Person"),
         ],
       ),
     );
