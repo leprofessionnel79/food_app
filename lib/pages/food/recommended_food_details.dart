@@ -62,13 +62,13 @@ class RecommendedFood extends StatelessWidget {
                                   icon: Icons.circle,
                                   size: Dimensions.iconsize16 * 1.3,
                                   iconcolor: Colors.transparent,
-                                  backgroundcolor: Colors.red,
+                                  backgroundcolor: AppColors.mainColor,
                                 ),
                               )
                             : Container(),
                         Get.find<PopularProductController>().totalItem >= 1
                             ? Positioned(
-                                right: 3,
+                                right: 4,
                                 top: 3,
                                 child: BigText(
                                   text: Get.find<PopularProductController>()

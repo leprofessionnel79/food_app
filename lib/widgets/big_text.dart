@@ -12,13 +12,15 @@ class BigText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+
       maxLines: 1,
       overflow: overflow,
       style: TextStyle(
         color: color,
         fontSize: size==0?Dimensions.font20:size,
         fontFamily: 'Roboto',
-        fontWeight: FontWeight.w400
+        fontWeight: FontWeight.w400,
+
       ),
     );
   }
