@@ -9,7 +9,8 @@ class OrderController extends GetxController implements GetxService{
 
  bool _isLoading = false;
  bool get isLoading => _isLoading;
-
+ int _paymentIndex = 0 ;
+ int get paymentIndex => _paymentIndex;
 
  late List<OrderModel> _currentOrderList;
  late List<OrderModel> _historyOrderList;
@@ -61,6 +62,11 @@ class OrderController extends GetxController implements GetxService{
     }
     _isLoading=false;
     update();
+  }
+
+  void setPaymentIndex(int index){
+   _paymentIndex = index;
+   update();
   }
 
 }

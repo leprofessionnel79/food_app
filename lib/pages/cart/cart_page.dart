@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/base/common_text_button.dart';
 import 'package:food_app/base/no_data_page.dart';
 import 'package:food_app/base/show_custom_snackbar.dart';
 import 'package:food_app/controllers/auth_controller.dart';
@@ -11,6 +12,7 @@ import 'package:food_app/controllers/recommended_product_controller.dart';
 import 'package:food_app/controllers/user_controller.dart';
 import 'package:food_app/models/place_order_model.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
+import 'package:food_app/pages/order/payment_option_button.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
@@ -265,10 +267,10 @@ class CartPage extends StatelessWidget {
             GetBuilder<CartController>(builder: (cartController) {
 
           return Container(
-            height: Dimensions.height100 ,
+            height: Dimensions.height120+Dimensions.height20+5 ,
             padding: EdgeInsets.only(
-                top: Dimensions.height10,
-                bottom: Dimensions.height10,
+                top: Dimensions.height10/2,
+                bottom: Dimensions.height10/2,
                 left: Dimensions.width15,
                 right: Dimensions.width15),
             decoration: BoxDecoration(
@@ -278,151 +280,200 @@ class CartPage extends StatelessWidget {
                   topRight: Radius.circular(Dimensions.height20 * 2),
                 )),
             child: cartController.getItems.length > 0
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(
-                            top: Dimensions.height15,
-                            bottom: Dimensions.height15,
-                            left: Dimensions.width10/2,
-                            right: Dimensions.width15),
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(Dimensions.radius20),
-                            color: Colors.white),
-                        child: Row(
-                          children: [
-                            // SizedBox(
-                            //   width: Dimensions.width10 / 2,
-                            // ),
-                            BigText(
-                                text: "\$ " +
-                                    cartController.totalAmount.toString()),
-                            SizedBox(
-                              width: Dimensions.width10 / 1.5,
+                ? Column(
+                  children: [
+                    InkWell(
+                      onTap: ()=>showModalBottomSheet(
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (_){
+                            return Column(
+                              children: [
+                                Expanded(
+                                    child: SingleChildScrollView(
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height*0.9,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(Dimensions.radius20),
+                                          topRight: Radius.circular(Dimensions.radius20),
+                                        )
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                            top: Dimensions.height20,
+                                            left: Dimensions.width20,
+                                            right: Dimensions.width20
+                                          ),
+                                          height: 520,
+                                          child: Column(
+                                            children: [
+                                              const PaymentOptionButton(
+                                                icon: Icons.money,
+                                                title: "Cash On Delivery",
+                                                subtitle: "you pay after getting delivery",
+                                                index: 0,
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10,
+                                              ),
+                                              const PaymentOptionButton(
+                                                icon: Icons.paypal_outlined,
+                                                title: "Digital Payment",
+                                                subtitle: "safer and faster way to pay",
+                                                index: 1,
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                              ],
+                            );
+                          }),
+                      child: Container(
+                        width: double.maxFinite,
+                        child: CommonTextButton(text: "payment and delivery options",),
+                      ),
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: Dimensions.height15,
+                                bottom: Dimensions.height15,
+                                left: Dimensions.width10/2,
+                                right: Dimensions.width15),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(Dimensions.radius20),
+                                color: Colors.white),
+                            child: Row(
+                              children: [
+                                // SizedBox(
+                                //   width: Dimensions.width10 / 2,
+                                // ),
+                                BigText(
+                                    text: "\$ " +
+                                        cartController.totalAmount.toString()),
+                                SizedBox(
+                                  width: Dimensions.width10 / 1.5,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: Dimensions.width10 /2,
-                      ),
-                       Container(
-                            margin: EdgeInsets.only(right: Dimensions.width10/2),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ButtonRadio(
-                                    value: 'paypal',
-                                    title: 'PayPal'
+                          ),
+                          SizedBox(
+                            width: Dimensions.width10 /2,
+                          ),
+                           Container(
+                                margin: EdgeInsets.only(right: Dimensions.width10/2),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      ButtonRadio(
+                                        value: 'paypal',
+                                        title: 'PayPal'
+                                      ),
+                                      ButtonRadio(
+                                          value: 'cash',
+                                          title: 'Cash'
+                                      ),
+                                    ],
                                   ),
-                                  ButtonRadio(
-                                      value: 'cash',
-                                      title: 'Cash'
-                                  ),
-                                ],
+
                               ),
 
-                          ),
 
+                          GestureDetector(
+                            onTap: () async {
+                               String paymentType = Get.find<ButtonRadioController>().paymentType;
+                               bool isCash = false;
 
-                      GestureDetector(
-                        onTap: () async {
-                           String paymentType = Get.find<ButtonRadioController>().paymentType;
-                           bool isCash = false;
+                              if (Get.find<AuthController>().userLoggedIn()) {
 
-                          if (Get.find<AuthController>().userLoggedIn()) {
+                                if (Get.find<LocationController>()
+                                    .addressList
+                                    .isEmpty) {
 
-                            if (Get.find<LocationController>()
-                                .addressList
-                                .isEmpty) {
+                                 // Get.toNamed(RouteHelper.getAddressPage());
 
-                             // Get.toNamed(RouteHelper.getAddressPage());
-
-                              // var location = Get.find<LocationController>().getUserAddress();
-                              // if(paymentType=="cash"){
-                              //    isCash= await showCupertinoDialog(context: context, builder: createDialog);
-                              //  print("isCash is :"+isCash.toString());
-                              //
-                              //     // print("isCash is :"+isCash.toString());
-                              //      var cart = Get.find<CartController>().getItems;
-                              //      var user = Get.find<UserController>().userModel;
-                              //      PlaceOrderBody placeOrder = PlaceOrderBody(
-                              //          cart: cart,
-                              //          orderAmount: 100.0,
-                              //          orderNote: "Not about Food",
-                              //          address: "unknown address",//??location.address,
-                              //          latitude: "45.51563",//??location.latitude,
-                              //          longitude: "-122.677433",//??location.longitude,
-                              //          contactPersonName: user!.name,
-                              //          contactPersonNumber: user!.phone,
-                              //          scheduleAt: '',
-                              //          distance: 10.0
-                              //      );
-                              //     isCash? Get.find<OrderController>().placeOrder(placeOrder,_callBack):"something went wrong";
-                              //
-                              // }
-                              // var location = Get.find<LocationController>().getUserAddress();
-                              var cart = Get.find<CartController>().getItems;
-                              var user = Get.find<UserController>().userModel;
-                              PlaceOrderBody placeOrder = PlaceOrderBody(
-                                  cart: cart,
-                                  orderAmount: 100.0,
-                                  orderNote: "Not about Food",
-                                  address: "unknown address",//location.address,
-                                  latitude: "45.51563",//location.latitude,
-                                  longitude: "-122.677433",//location.longitude,
-                                  contactPersonName: user!.name,
-                                  contactPersonNumber: user!.phone,
-                                  scheduleAt: '',
-                                  distance: 10.0
-                              );
-                              Get.find<OrderController>().placeOrder(placeOrder,_callBack);
-                            }
-                            else{
-                             // Get.offNamed(RouteHelper.getInitial());
-                              var location = Get.find<LocationController>().getUserAddress();
-                              var cart = Get.find<CartController>().getItems;
-                              var user = Get.find<UserController>().userModel;
-                              PlaceOrderBody placeOrder = PlaceOrderBody(
-                                cart: cart,
-                                orderAmount: 100.0,
-                                orderNote: "Not about Food",
-                                address: location.address,
-                                latitude: location.latitude,
-                                longitude: location.longitude,
-                                contactPersonName: user!.name,
-                                contactPersonNumber: user!.phone,
-                                scheduleAt: '',
-                                distance: 10.0
-                              );
-                              Get.find<OrderController>().placeOrder(placeOrder,_callBack);
-                            }
-                            cartController.addToHistory();
-                          } else {
-                            Get.toNamed(RouteHelper.getSignInPage());
-                          }
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(
-                              top: Dimensions.height15,
-                              bottom: Dimensions.height15,
-                              left: Dimensions.width15,
-                              right: Dimensions.width15),
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius20),
-                              color: AppColors.mainColor),
-                          child: BigText(
-                            text: "Check Out",
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+                                  // var location = Get.find<LocationController>().getUserAddress();
+                                  // if(paymentType=="cash"){
+                                  //    isCash= await showCupertinoDialog(context: context, builder: createDialog);
+                                  //  print("isCash is :"+isCash.toString());
+                                  //
+                                  //     // print("isCash is :"+isCash.toString());
+                                  //      var cart = Get.find<CartController>().getItems;
+                                  //      var user = Get.find<UserController>().userModel;
+                                  //      PlaceOrderBody placeOrder = PlaceOrderBody(
+                                  //          cart: cart,
+                                  //          orderAmount: 100.0,
+                                  //          orderNote: "Not about Food",
+                                  //          address: "unknown address",//??location.address,
+                                  //          latitude: "45.51563",//??location.latitude,
+                                  //          longitude: "-122.677433",//??location.longitude,
+                                  //          contactPersonName: user!.name,
+                                  //          contactPersonNumber: user!.phone,
+                                  //          scheduleAt: '',
+                                  //          distance: 10.0
+                                  //      );
+                                  //     isCash? Get.find<OrderController>().placeOrder(placeOrder,_callBack):"something went wrong";
+                                  //
+                                  // }
+                                  // var location = Get.find<LocationController>().getUserAddress();
+                                  var cart = Get.find<CartController>().getItems;
+                                  var user = Get.find<UserController>().userModel;
+                                  PlaceOrderBody placeOrder = PlaceOrderBody(
+                                      cart: cart,
+                                      orderAmount: 100.0,
+                                      orderNote: "Not about Food",
+                                      address: "unknown address",//location.address,
+                                      latitude: "45.51563",//location.latitude,
+                                      longitude: "-122.677433",//location.longitude,
+                                      contactPersonName: user!.name,
+                                      contactPersonNumber: user!.phone,
+                                      scheduleAt: '',
+                                      distance: 10.0
+                                  );
+                                  Get.find<OrderController>().placeOrder(placeOrder,_callBack);
+                                }
+                                else{
+                                 // Get.offNamed(RouteHelper.getInitial());
+                                  var location = Get.find<LocationController>().getUserAddress();
+                                  var cart = Get.find<CartController>().getItems;
+                                  var user = Get.find<UserController>().userModel;
+                                  PlaceOrderBody placeOrder = PlaceOrderBody(
+                                    cart: cart,
+                                    orderAmount: 100.0,
+                                    orderNote: "Not about Food",
+                                    address: location.address,
+                                    latitude: location.latitude,
+                                    longitude: location.longitude,
+                                    contactPersonName: user!.name,
+                                    contactPersonNumber: user!.phone,
+                                    scheduleAt: '',
+                                    distance: 10.0
+                                  );
+                                  Get.find<OrderController>().placeOrder(placeOrder,_callBack);
+                                }
+                                cartController.addToHistory();
+                              } else {
+                                Get.toNamed(RouteHelper.getSignInPage());
+                              }
+                            },
+                            child: CommonTextButton(text: "Check Out",),
+                          )
+                        ],
+                      ),
+                  ],
+                )
                 : Container(),
           );
         }));
