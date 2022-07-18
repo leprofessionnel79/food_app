@@ -11,8 +11,13 @@ class Dimensions {
   
   
   // fonts
+  // to get factor x u davide screen height on new font height
+  // for example new font will be font34 then u davide real
+  // screen height on number 34 to get x factor
+  // then davide screenHeight / that x u got
   static double font20 = screenHeight / 34.1714286;
   static double font17 = screenHeight / 40.2016807;
+  static double font12 = screenHeight / 56.952381;
   static double font26 = screenHeight / 26.2857143;
   // radius
   static double radius30 = screenHeight / 22.7809524;

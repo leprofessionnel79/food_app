@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/base/no_data_page.dart';
 import 'package:food_app/base/show_custom_snackbar.dart';
@@ -25,6 +26,8 @@ import '../../widgets/button_radio.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -260,6 +263,7 @@ class CartPage extends StatelessWidget {
         ),
         bottomNavigationBar:
             GetBuilder<CartController>(builder: (cartController) {
+
           return Container(
             height: Dimensions.height100 ,
             padding: EdgeInsets.only(
@@ -325,7 +329,9 @@ class CartPage extends StatelessWidget {
 
 
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                           String paymentType = Get.find<ButtonRadioController>().paymentType;
+                           bool isCash = false;
 
                           if (Get.find<AuthController>().userLoggedIn()) {
 
@@ -334,8 +340,30 @@ class CartPage extends StatelessWidget {
                                 .isEmpty) {
 
                              // Get.toNamed(RouteHelper.getAddressPage());
-                              // from line 311 to line 326 just for testing it shouldn't be in this block
 
+                              // var location = Get.find<LocationController>().getUserAddress();
+                              // if(paymentType=="cash"){
+                              //    isCash= await showCupertinoDialog(context: context, builder: createDialog);
+                              //  print("isCash is :"+isCash.toString());
+                              //
+                              //     // print("isCash is :"+isCash.toString());
+                              //      var cart = Get.find<CartController>().getItems;
+                              //      var user = Get.find<UserController>().userModel;
+                              //      PlaceOrderBody placeOrder = PlaceOrderBody(
+                              //          cart: cart,
+                              //          orderAmount: 100.0,
+                              //          orderNote: "Not about Food",
+                              //          address: "unknown address",//??location.address,
+                              //          latitude: "45.51563",//??location.latitude,
+                              //          longitude: "-122.677433",//??location.longitude,
+                              //          contactPersonName: user!.name,
+                              //          contactPersonNumber: user!.phone,
+                              //          scheduleAt: '',
+                              //          distance: 10.0
+                              //      );
+                              //     isCash? Get.find<OrderController>().placeOrder(placeOrder,_callBack):"something went wrong";
+                              //
+                              // }
                               // var location = Get.find<LocationController>().getUserAddress();
                               var cart = Get.find<CartController>().getItems;
                               var user = Get.find<UserController>().userModel;
@@ -343,9 +371,9 @@ class CartPage extends StatelessWidget {
                                   cart: cart,
                                   orderAmount: 100.0,
                                   orderNote: "Not about Food",
-                                  address: "unknown address",//??location.address,
-                                  latitude: "45.51563",//??location.latitude,
-                                  longitude: "-122.677433",//??location.longitude,
+                                  address: "unknown address",//location.address,
+                                  latitude: "45.51563",//location.latitude,
+                                  longitude: "-122.677433",//location.longitude,
                                   contactPersonName: user!.name,
                                   contactPersonNumber: user!.phone,
                                   scheduleAt: '',
@@ -362,9 +390,9 @@ class CartPage extends StatelessWidget {
                                 cart: cart,
                                 orderAmount: 100.0,
                                 orderNote: "Not about Food",
-                                address: location.address??"unknowen address",
-                                latitude: location.latitude??"45.51563",
-                                longitude: location.longitude??"-122.677433",
+                                address: location.address,
+                                latitude: location.latitude,
+                                longitude: location.longitude,
                                 contactPersonName: user!.name,
                                 contactPersonNumber: user!.phone,
                                 scheduleAt: '',
@@ -399,6 +427,29 @@ class CartPage extends StatelessWidget {
           );
         }));
   }
+
+   Widget createDialog(BuildContext context) => CupertinoAlertDialog(
+      title: Text(
+        "Note",
+        style: TextStyle(
+          fontSize: Dimensions.font17
+        ),
+      ),
+    content:Text(
+      "Transporting cash will be out total amount!!",
+      style: TextStyle(
+          fontSize: Dimensions.font20
+      ),
+    ) ,
+    actions: [
+      CupertinoDialogAction(
+          child: const Text("OK"),
+      onPressed: ()=>Navigator.pop(context,true),),
+      CupertinoDialogAction(
+        child: const Text("CANCEL"),
+        onPressed: ()=>Navigator.pop(context,false),),
+    ],
+  );
 
   void _callBack(bool isSuccess, String message , String orderID,String paymentType){
     if(isSuccess){

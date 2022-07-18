@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/base/custom_app_bar.dart';
 import 'package:food_app/controllers/auth_controller.dart';
 import 'package:food_app/pages/auth/sign_in_page.dart';
 import 'package:food_app/routes/route_helper.dart';
@@ -39,13 +40,7 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
 
     return _isLoggedIn?Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text("My Orders"),
-        ),
-        backgroundColor: AppColors.mainColor,
-        //leading: const Icon(Icons.arrow_back),
-      ),
+      appBar: CustomAppBar(title: "My Orders",),
       body: Column(
         children: [
           Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/base/custom_app_bar.dart';
 import 'package:food_app/controllers/auth_controller.dart';
 import 'package:food_app/controllers/location_controller.dart';
 import 'package:food_app/controllers/user_controller.dart';
@@ -67,18 +68,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:  Padding(
-          padding:EdgeInsets.only(left: Dimensions.width45*2),
-          child: Text("Address Page"),
-        ),
-        backgroundColor: AppColors.mainColor,
-        leading: GestureDetector(
-            onTap: (){
-              Get.offNamed(RouteHelper.getInitial());
-            },
-            child: Icon(Icons.arrow_back)),
-      ),
+      appBar: CustomAppBar(title: "Address",),
       body: GetBuilder<UserController>(builder: (userController){
         if(userController.userModel!=null&& _contactPersonName.text.isEmpty){
           _contactPersonName.text = '${userController.userModel?.name}';
