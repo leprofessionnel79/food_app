@@ -6,6 +6,7 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hintText;
   final IconData icon;
+  bool maxLines;
   bool isObsecure;
    AppTextField(
       {Key? key,
@@ -13,6 +14,7 @@ class AppTextField extends StatelessWidget {
       required this.hintText,
       required this.icon,
       this.isObsecure=false,
+        this.maxLines=false
       })
       : super(key: key);
 
@@ -34,6 +36,7 @@ class AppTextField extends StatelessWidget {
               )
             ]),
         child: TextField(
+          maxLines: maxLines?3:1,
           obscureText: isObsecure?true:false,
           controller: textEditingController,
           decoration: InputDecoration(

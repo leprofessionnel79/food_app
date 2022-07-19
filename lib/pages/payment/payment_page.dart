@@ -16,8 +16,8 @@ import 'package:get/get.dart';
 
 class PaymentPage extends StatefulWidget {
   final OrderModel orderModel;
-  final String paymentType;
-  PaymentPage({required this.orderModel, required this.paymentType});
+
+  PaymentPage({required this.orderModel});
 
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -37,7 +37,7 @@ class _PaymentPageState extends State<PaymentPage> {
   void initState() {
     super.initState();
     selectedUrl = '${AppConstants.BASE_URL}/payment-mobile?customer_id=${widget.orderModel.userId}&order_id=${widget.orderModel.id}';
-    paymentTp = widget.paymentType;
+
     //selectedUrl="https://mvs.bslmeiyu.com";
     // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
@@ -80,7 +80,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
                 // if you want paypal method payment uncomment WebView section and comment
                 // which above
-                paymentTp=="paypal"?WebView(
+                WebView(
                   javascriptMode: JavascriptMode.unrestricted,
                   initialUrl: selectedUrl,
                   gestureNavigationEnabled: true,
@@ -111,58 +111,6 @@ class _PaymentPageState extends State<PaymentPage> {
                     _redirect(url);
 
                   },
-                ):Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.check_circle_outline,
-                      size: 100,color: AppColors.mainColor,),
-                    SizedBox(height: Dimensions.height30,),
-                    Text(
-                      "You place the order successfully ",
-                      style: TextStyle(fontSize: Dimensions.font20),
-                    ),
-                    SizedBox(height: Dimensions.height20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          //color: AppColors.mainColor,
-                          padding: EdgeInsets.all(13),
-                          margin: EdgeInsets.only(bottom: Dimensions.height10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(Dimensions.radius15),
-                            color: AppColors.yellowColor,
-                          ),
-                          child: Text(
-                            "It is Cash ON Delivery ",
-                            style: TextStyle(fontSize: Dimensions.font20,
-                              color: Colors.white,
-
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: Dimensions.width20,),
-                        Image.asset("assets/image/money.png")
-                      ],
-                    ),
-                    SizedBox(height: Dimensions.height20,),
-
-                    SizedBox(
-                      width: Dimensions.screenWidth/2,
-                      child: Padding(padding: EdgeInsets.only(
-                        top:Dimensions.height30,
-                        //right: Dimensions.height10,
-                        //left: Dimensions.height20
-                      ),
-                        child: CustomButton(buttonText: "Back to Home",onPressed:
-                            ()=> Get.offAllNamed(RouteHelper.getInitial())
-                          ,),
-                      ),
-                    ),
-
-                  ],
-
                 ),
 
                 // for paypal method you have remove "!" from _isLoading in next line

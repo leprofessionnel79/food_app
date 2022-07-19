@@ -15,6 +15,9 @@ class OrderController extends GetxController implements GetxService{
  String _orderType="delivery";
  String get orderType=>_orderType;
 
+ String _foodnote =" ";
+ String get foodnote => _foodnote;
+
  late List<OrderModel> _currentOrderList;
  late List<OrderModel> _historyOrderList;
  List<OrderModel> get currentOrderList =>_currentOrderList;
@@ -30,9 +33,9 @@ class OrderController extends GetxController implements GetxService{
      String message = response.body['message'].toString();
      String orderID = response.body['order_id'].toString();
 
-     callBack(true, message,orderID,"");
+     callBack(true, message,orderID);
    }else{
-     callBack(false, response.statusText!,'-1',"");
+     callBack(false, response.statusText!,'-1');
    }
  }
 
@@ -74,6 +77,11 @@ class OrderController extends GetxController implements GetxService{
 
   void setDeliveryType(String type){
    _orderType=type;
+   update();
+  }
+
+  void setFoodNote(String note){
+   _foodnote = note;
    update();
   }
 
