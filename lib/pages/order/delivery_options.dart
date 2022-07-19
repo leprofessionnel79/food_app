@@ -28,7 +28,10 @@ class DeliveryOptions extends StatelessWidget {
           SizedBox(width: Dimensions.width10/2,),
           Text(
             '(${(value=='take away'||isFree)?'free':'\$${amount/10}'})',
-            style: robotoMedium,
+            style: robotoMedium.copyWith(
+              fontSize: Dimensions.font20,
+
+            ),
           )
         ],
       );

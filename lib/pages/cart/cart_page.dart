@@ -26,9 +26,6 @@ import 'package:food_app/widgets/small_text.dart';
 import 'package:get/get.dart';
 import 'package:food_app/controllers/location_controller.dart';
 
-import '../../controllers/button_radio_controller.dart';
-import '../../widgets/button_radio.dart';
-
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
