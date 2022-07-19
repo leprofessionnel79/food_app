@@ -12,11 +12,13 @@ import 'package:food_app/controllers/recommended_product_controller.dart';
 import 'package:food_app/controllers/user_controller.dart';
 import 'package:food_app/models/place_order_model.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
+import 'package:food_app/pages/order/delivery_options.dart';
 import 'package:food_app/pages/order/payment_option_button.dart';
 import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
+import 'package:food_app/utils/styles.dart';
 import 'package:food_app/widgets/app_icons.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/small_text.dart';
@@ -310,6 +312,7 @@ class CartPage extends StatelessWidget {
                                           ),
                                           height: 520,
                                           child: Column(
+
                                             children: [
                                               const PaymentOptionButton(
                                                 icon: Icons.money,
@@ -325,8 +328,23 @@ class CartPage extends StatelessWidget {
                                                 title: "Digital Payment",
                                                 subtitle: "safer and faster way to pay",
                                                 index: 1,
-                                              )
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10/2,
+                                              ),
+                                              Text("Delivery Options ",style: robotoMedium,),
+                                              DeliveryOptions(
+                                                  value: "delivery",
+                                                  title: "home delivery",
+                                                  amount: double.parse(Get.find<CartController>().totalAmount.toString()),
+                                                  isFree: false),
+                                              DeliveryOptions(
+                                                  value: "take away",
+                                                  title: "take away",
+                                                  amount: 10.0,
+                                                  isFree: true),
                                             ],
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                           ),
                                         )
                                       ],

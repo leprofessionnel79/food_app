@@ -12,6 +12,9 @@ class OrderController extends GetxController implements GetxService{
  int _paymentIndex = 0 ;
  int get paymentIndex => _paymentIndex;
 
+ String _orderType="delivery";
+ String get orderType=>_orderType;
+
  late List<OrderModel> _currentOrderList;
  late List<OrderModel> _historyOrderList;
  List<OrderModel> get currentOrderList =>_currentOrderList;
@@ -66,6 +69,11 @@ class OrderController extends GetxController implements GetxService{
 
   void setPaymentIndex(int index){
    _paymentIndex = index;
+   update();
+  }
+
+  void setDeliveryType(String type){
+   _orderType=type;
    update();
   }
 
