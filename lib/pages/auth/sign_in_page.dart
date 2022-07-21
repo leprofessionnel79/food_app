@@ -11,6 +11,8 @@ import 'package:food_app/widgets/app_text_field.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/user_controller.dart';
+
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
 
@@ -33,6 +35,7 @@ class SignInPage extends StatelessWidget {
       } else {
         authController.login(phone, password).then((status) {
           if (status.isSuccess) {
+            Get.find<UserController>().getUserInfo();
             Get.toNamed(RouteHelper.getInitial());
            
           } else {
@@ -139,6 +142,7 @@ class SignInPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           _login(authController);
+
                         },
                         child: Container(
                           width: Dimensions.screenWidth / 2.4,

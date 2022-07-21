@@ -418,37 +418,13 @@ class CartPage extends StatelessWidget {
 
                           GestureDetector(
                             onTap: () async {
-
-
                               if (Get.find<AuthController>().userLoggedIn()) {
                                 if (Get.find<LocationController>()
                                     .addressList
                                     .isEmpty) {
                                   // Get.toNamed(RouteHelper.getAddressPage());
 
-                                  // var location = Get.find<LocationController>().getUserAddress();
-                                  // if(paymentType=="cash"){
-                                  //    isCash= await showCupertinoDialog(context: context, builder: createDialog);
-                                  //  print("isCash is :"+isCash.toString());
-                                  //
-                                  //     // print("isCash is :"+isCash.toString());
-                                  //      var cart = Get.find<CartController>().getItems;
-                                  //      var user = Get.find<UserController>().userModel;
-                                  //      PlaceOrderBody placeOrder = PlaceOrderBody(
-                                  //          cart: cart,
-                                  //          orderAmount: 100.0,
-                                  //          orderNote: "Not about Food",
-                                  //          address: "unknown address",//??location.address,
-                                  //          latitude: "45.51563",//??location.latitude,
-                                  //          longitude: "-122.677433",//??location.longitude,
-                                  //          contactPersonName: user!.name,
-                                  //          contactPersonNumber: user!.phone,
-                                  //          scheduleAt: '',
-                                  //          distance: 10.0
-                                  //      );
-                                  //     isCash? Get.find<OrderController>().placeOrder(placeOrder,_callBack):"something went wrong";
-                                  //
-                                  // }
+
                                   // var location = Get.find<LocationController>().getUserAddress();
                                   var cart =
                                       Get.find<CartController>().getItems;
@@ -457,7 +433,7 @@ class CartPage extends StatelessWidget {
                                   PlaceOrderBody placeOrder = PlaceOrderBody(
                                       cart: cart,
                                       orderAmount: 100.0,
-                                      orderNote: orderController.foodnote,
+                                      orderNote: orderController.foodnote==''?'empty note':orderController.foodnote,
                                       address: "unknown address",
                                       //location.address,
                                       latitude: "45.51563",
